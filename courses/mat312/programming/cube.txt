@@ -1,0 +1,19 @@
+Cube symmetries
+
+Use the program to record the "representation" of the symmetry group S4 of the cube by matrices.
+For each conjugacy class, give an example of its rotation matrix and record its trace.
+
+identity
+
+
+(12), (13), (14), (23), (24), (34)
+
+
+(12)(34), (13)(24), (14)(23)
+
+
+(123), (124), (132), (134), (142), (143), (234), (243)
+
+
+(1234), (1243), (1324), (1342), (1423), (1432)
+

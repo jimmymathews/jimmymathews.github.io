@@ -1,0 +1,82 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{caption}
+\usepackage{verbatim}
+\usepackage{enumerate}
+\usepackage[all]{xy}
+\usepackage[margin=1.25in]{geometry}
+\captionsetup{labelformat=empty}
+\date{}
+\begin{document}
+\setlength\parindent{0pt}
+\textbf{MAT 200 sample exam questions}
+\vspace{1pc}
+
+\textbf{A}.  Non-technically, a \emph{graph} is an abstract system of vertices connected by edges.  Technically, a graph is: a set $V$  whose elements are called \emph{vertices}, and a subset $E\subset V\times V$ whose elements are called \emph{edges}.  An element $(v_1,v_2)\in E$ is said to \emph{connect} $v_1$ to $v_2$.  Two graphs $(V,E)$ and $(V',E')$ are called \emph{equivalent} if there is a bijection $f:V\rightarrow V'$ such that $F(E)=E'$, where $F$ is the bijection $V\times V\rightarrow V'\times V'$ defined by $(v_1,v_2)\mapsto(f(v_1),f(v_2))$.
+
+\begin{enumerate}
+\item{Draw pictures of 3 examples of graphs with 5 vertices which are all inequivalent to each other, and also draw the subset $E$ inside the set $V\times V$. (Use the usual ``coordinate" picture for the Cartesian product.)}
+\item{How many graphs can be made using 3 vertices?  4?  How about $n$ vertices, for an integer $n$?}
+\item{Using this definition, how many edges can connect two given vertices?}
+\item{Within this framework, define \emph{loop}.  In one of your graphs from part (1), mark the edges of a loop in the Cartesian product picture.}
+\end{enumerate}
+
+\textbf{B}.  The set of symmetries of objects forms what is called a \emph{group}.  A \emph{group} is a set $G$, a distinguished element called $1\in G$ (or 0), and an operation $*:G\times G\rightarrow G$ called the multiplication (or addition), such that
+
+\begin{enumerate}
+\item{(Inverses exist) For each $g\in G$, there exists an element $h$ such that $g*h=1$.}
+\item{(Associativity) For each $g,h,k\in G$, $(g*h)*k=g*(h*k)$.}
+\end{enumerate}
+
+Consider the following.
+
+\begin{enumerate}
+\item{Let $P_n$ denote the set of permutations of our set $\mathbb{N}_n=\{1,2,3...,n\}$ (that is, bijections $\mathbb{N}_n\rightarrow\mathbb{N}_n$).  Verify that $P_n$ and the operation $*$ defined by 
+\[(f*g)(x)=f(g(x))\]
+form a group.
+}
+\item{The notation $f=(235)(41)(87)$ means $f$ is a permutation of $\mathbb{N}_8$ that maps $2$ to $3$, $3$ to $5$, $5$ to $2$, $4$ to $1$, $1$ to $4$, $8$ to $7$, and $7$ to $8$.  Write the function $f$ by specifying its values on the inputs $\mathbb{N}_n$ written in the usual order.}
+\item{If $f=(a_1 a_4)(a_2 a_3)$ and $g=(a_3a_2a_4)$, what is $f(g(a_4))$?  Can you make a table of all values of $f*g$?  Can you represent $f*g$ in this ``cycle" notation?}
+\item{The \emph{order} of a permutation $f$ is the smallest integer $n$ such that $f^{n}$ is the identity function (Here $f^{2}$ means the function $f\circ f$, $f^{3}$ means $f\circ f \circ f$..., and the identity function is the function that maps each $x$ to $x$).  What is the order of the permutation $f*g$ found in part (3)?}
+\item{The rigid motions of the plane form a group called the \emph{Euclidean isometry group}, using the operation of function composition.  Technically, a ``rigid motion" is a bijection $f:P\rightarrow P$ from the set of points $P$ of the plane to itself such that the distance between any two $a,b\in P$ is the same as the distance between $f(a)$ and $f(b)$. Can you classify the elements of order 2 in this group?  How about the elements with infinite order (no finite number is the order of the element)?}
+\end{enumerate}
+
+\textbf{C}.  In calculus you work with functions $f:\mathbb{R}\rightarrow\mathbb{R}$.  For a given input $x\in\mathbb{R}$, $f$ is called \emph{continuous at $x$} if
+
+\vspace{1pc}
+For every number $b>0$, there exists a number $a>0$ such that the condition $|f(y)-f(x)|<b$ can only hold when $|y-x|<a$.  In other terms: 
+
+\[\forall b>0  \: \exists \: a>0 \: \forall y \: (|f(y)-f(x)|<b \implies |y-x|<a)\]
+
+\begin{enumerate}
+\item{Write the negation (logical opposite) of ``$f$ is continuous at $x$" using the quantifer notation.}
+\item{Find a specific function $f$ which is not continuous at $x=1$.  Prove that it is not continuous there. (This hardly needs to be said: \emph{from the definition})}
+\item{Assume a given function $f$ is continuous at $x=1$.  Prove that the function $g$ defined by $g(x)=f(x)\cdot f(x)$ is also continuous at $1$.}
+\item{Using (3), decide whether the function $f(x)=x^{2}$ is continuous at $x=1$.}
+\end{enumerate}
+
+\textbf{D}.  Consider a hemisphere and a tangent plane in 3-dimensional space.  We may regard the hemisphere as the set $H$:
+
+\[H=\{ (x,y,z)\in \mathbb{R}\times\mathbb{R}\times\mathbb{R}| x^{2}+y^{2}+z^{2}=0 \text{ and } z>0\}\]
+
+and the plane as the set $P$:
+
+\[P=\{(x,y,z)\in \mathbb{R}\times\mathbb{R}\times\mathbb{R}| z=1\}\]
+
+Define a function $p$ from the 3-space to the plane $P$ by the formula $p(x,y,z)=(x/z,y/z,1)$.  (Actually, $p$ is not defined at $(0,0,0)$.)  $p$ is called a \emph{central projection}.  It can be defined without formulas: $p(X)$ is the intersection of the line through $0$ and $X$ with the plane $P$.
+
+\begin{enumerate}
+\item{Let $p_H$ be the projection from 3-space to $H$ defined by: $p_H(X)$ is the intersection of the line through $0$ and $X$ with $H$.  Let $p_{HP}$ be the projection from $H$ to $P$ defined by: $p_{HP}(X)$ is the intersection of the line through $0$ and $X$ with the plane $P$.  Write formulas for $p_H$ and $p_{PH}$.}
+\item{Using the formulas, prove that $p_{HP}\circ p_H = p$.}
+\item{Without using the formulas, prove that $p_{HP}\circ p_H = p$.}
+\item{Verify that the formula $h(x,y,1)=\left(\frac{x}{1+x^{2}+y^{2}},\frac{y}{1+x^{2}+y^{2}},\frac{1}{1+x^{2}+y^{2}}\right)$ defines a function whose image is contained in $H$, and that this function defines an inverse for $p_{HP}$.  Denote it by $p_{PH}$ (for ``projection from $P$ to $H$"); conclude that $p_{HP}$ is a bijection.}
+\item{For a given angle $\theta$, the formula
+
+\[f(x,y,z)=(\cos(\theta)x +\sin(\theta)y,-\sin(\theta)x+\cos(\theta)y,z)\]
+
+defines a function from the 3-space to itself called the \emph{rotation about the $z$-axis by angle $\theta$}.  Compute a formula for $p\circ f$ as a function from $P$ to $P$ (actually, some points are missing from the domain: Why?  It is better to regard $P$ as some of the points of the projective plane).  This function is called a \emph{perspectivity}.  What is the interpretation of $p\circ f$ in terms of visual perspective?
+}
+\end{enumerate}
+
+\end{document}

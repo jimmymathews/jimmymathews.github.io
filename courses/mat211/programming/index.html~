@@ -1,0 +1,37 @@
+<html>
+<body>
+<a href="inertiaProject1.txt">1:</a>
+shell program
+</br>
+<a href="inertiaProject2.txt">2:</a>
+displays a window with a box in it
+</br>
+<a href="inertiaProject3.txt">3:</a>
+a matrix class: default constructors, addition, multiplication, determinant, inverse, exponential, conversion to string, rotation matrix
+</br>
+<a href="inertiaProject4.txt">4:</a>
+allows box to be drawn at any given configuration (specified by a matrix)
+allows use rotation of the field of view
+</br>
+<a href="inertiaProject5.txt">5:</a>
+rotates with constant angular velocity on user command
+draws axes
+</br>
+<a href="inertiaProject6.txt">6:</a>
+resets viewer axes and velocity by user command
+</br>
+<a href="inertiaProject7.txt">7:</a>
+compute moments of inertia (not just all equal)
+update reference velocity according to Euler equations
+</br>
+<a href="inertiaProject8.txt">8:</a>
+allow user to change the dimensions of the box (and hence the moments of inertia)
+update angular velocities according to this input
+</br>
+<a href="inertiaProject9.txt">9:</a>
+text and lines display of angular velocities
+user input of initial angular velocities
+display of principal axes (red)
+</br>
+</body>
+</html>
