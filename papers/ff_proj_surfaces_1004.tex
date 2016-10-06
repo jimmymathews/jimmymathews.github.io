@@ -1,0 +1,929 @@
+\documentclass[11pt]{article}
+\usepackage{amssymb,amsmath,amscd,graphicx,latexsym,amsthm,hyperref,float,xypic,simplewick, mathtools, graphicx,titlesec,suffix}
+\usepackage[utf8]{inputenc}
+\RequirePackage[dvipsnames,usenames]{xcolor}
+
+\numberwithin{equation}{section}
+\setlength{\footskip}{.2 in}
+\setlength{\headheight}{.1 in}
+\setlength{\parindent}{0pt}
+
+\hypersetup{
+    colorlinks,
+    citecolor=BlueViolet,
+    filecolor=BlueViolet,
+    linkcolor=BlueViolet,
+    urlcolor=blue
+}
+
+\newcounter{count}
+\theoremstyle{plain}
+\newtheorem{definition}[count]{Definition}
+\newtheorem{lemma}[count]{Lemma}
+\newtheorem{corollary}[count]{Corollary}
+\newtheorem{proposition}[count]{Proposition}
+\newtheorem{theorem}[count]{Theorem}
+\newtheorem{construction}[count]{Construction}
+\newtheorem{observation}[count]{Observation}
+\newtheorem{question}[count]{Question}
+\newtheorem{fact}[count]{Fact}
+\newtheorem*{theoremN}{Theorem}
+
+\theoremstyle{remark}
+\newtheorem{remark}[count]{Remark}
+\newtheorem{application}[count]{Application}
+\newtheorem{example}[count]{Example}
+\newtheorem{nonexample}[count]{Non-example}
+\newtheorem{note}[count]{Note}
+
+
+\renewcommand{\P}{\mathbb{P}}
+\renewcommand{\O}{\mathcal{O}}
+\renewcommand{\L}{\Lambda}
+\renewcommand{\ker}{\operatorname{ker}}
+\newcommand{\im}{\operatorname{image}}
+\newcommand{\D}{\partial}
+\newcommand{\GL}{GL}
+\newcommand{\SL}{SL}
+\newcommand{\PGL}{PGL}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\II}{\textnormal{II}}
+\newcommand{\stab}{\operatorname{stab}}
+
+\newcommand*{\matminus}{%
+  \leavevmode
+  \hphantom{0}%
+  \llap{%
+    \settowidth{\dimen0 }{$0$}%
+    \resizebox{1.1\dimen0 }{\height}{$-$}%
+  }%
+}
+
+\titleformat*{\section}{\normalsize\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\titleformat*{\subsubsection}{\small\bfseries}
+\begin{document}
+
+\title{The second fundamental form and the Wilczynski equations for smooth projective surfaces}
+\author{\scriptsize James Mathews \vspace{-2ex}\\
+\scriptsize \href{mailto:jmath@math.stonybrook.edu}{jmath@math.stonybrook.edu} \vspace{-2ex}\\
+% \scriptsize Stony Brook University \vspace{-2ex}\\
+% \scriptsize Math Tower 2-105, Stony Brook, NY
+}
+\date{}
+\maketitle
+
+\begin{abstract}
+The classical Wilczynski equations \cite{wil} play a role for smooth real projective surfaces $M\subset \RP^3$ up to projective transformation that is roughly analogous to the role played by the Gauss-Codazzi equations for surfaces in Euclidean space up to isometry. However, the Wilczynski equations only apply in the hyperbolic region of $M$, near ``saddle points".
+
+Tabachnikov and Ovsienko \cite{to} reformulated these equations in terms of a flat connection on a rank 4 vector bundle over $M$. By considering the conformal class of the second fundamental form $\II$ of $M$, we generalize their formulation to arbitrary non-degenerate surfaces, including the elliptic case of locally-convex surfaces.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+By giving several geometric constructions, we observe in section \ref{projfond} that the conformal class of the second fundamental form, which we denote by $\II$, is well-defined for smooth real projective surfaces. This is a slight departure from the linear system of quadrics $|\II|$ appearing in \cite{gh} or the differential invariants of \cite{ag}, both of which generalize the Riemannian second fundamental form to projective geometry via general exterior differential calculus rather than low-dimensional synthetic geometry.
+
+Throughout we shall use the notation:
+\begin{itemize}
+\itemsep-0.3em
+\item{$V$, a 4-dimensional real vector space}
+\item{$P^{3}:=\P V$}
+\item{$M \rightarrow P^{3}$, a smooth immersed surface}
+\end{itemize}
+There is a simple equivalence between the data of $M\rightarrow P^{3}$ and a triple $(E,\nabla,p)$ up to isomorphism, where $E$ is a trivial rank 4 real vector bundle over $M$, $\nabla$ is the trivial flat connection, and $p:E\rightarrow M\times \R$ is a smooth linear form. Here an isomorphism $(E,\nabla,p)\sim(E',\nabla',p')$ means a bundle isomorphism $E\simeq E'$ over $M$, under which $\nabla\cong \nabla'$ and $p$ corresponds to $fp'$ for some conformal factor $f:M\rightarrow \R\backslash\{0\}$. Namely, given $M$, we would set $E:=M\times V^*$, and select a linear form $p:E\rightarrow \R$ whose value at $m\in M$ is proportional to the elements of $(V^*)^*\cong V$ represented by the image of $m$ in $\P V$.
+
+The main result, proved in section \ref{genwil}, is a non-trivial realization of $(E,\nabla,p)$, by a second order differential system. We reiterate that only the locally-convex case is original. In summary:
+
+\begin{theoremN}
+Suppose that $M$ is a non-degenerate surface in $\P V$, with a chosen smooth lift $X:M\rightarrow V$.
+\begin{enumerate}\itemsep0em
+\item{
+The restrictions of the linear functions $V\rightarrow \R$ to $M$ along $X$ satisfy a certain codimension 2 integrable system of linear partial differential equations $E \subset J^{2}(M,\R)$.
+}
+\item{
+The characteristic variety of $E$ is independent of the lift $X$ and equals to $\II_M\subset S^{2}T^*M$.
+}
+\item{
+There is a flat connection $\nabla$ on the vector bundle $E$ whose horizontal sections are the integral manifolds of the restriction of the Pfaffian contact system of $J^{2}(M,\R)$ to $E$. $(E,\nabla)$ is isomorphic to the trivial bundle with the trivial connection.
+}
+\item{Let $p:E\rightarrow J^{0}(M,\R)=M\times \R$ be the projection. The triple $(E,\nabla,p)$ up to isomorphism determines $M$ as a projective surface.
+}
+\end{enumerate}
+\end{theoremN}
+
+\section{Projective fundamental quadratic form}\label{projfond}
+
+\subsection{The hyperbolic tradition}
+
+Tabachnikov and Ovsienko \cite{to} mention on page 110 a long-standing tradition of restricting attention to the hyperbolic points of surfaces in 3-space. They explain that the classical general theory of surfaces was usually implicitly real-analytic, admitting continuations into a complex domain. That way a pair of asymptotic directions could always be taken for granted, whether real or complex conjugate. Indeed, one finds many old references to ``nul-lines" on surfaces, meaning curves in the complex extension tangent to the null directions for the \emph{first} fundamental form of the presumably real-analytic original surface.
+
+In the merely smooth real theory, the restriction to hyperbolic points ensures the familiar classical setting in which the 2-web of asymptotic directions, or asymptotic net, is present.
+ 
+In section \ref{firstIIprojinv} we explain why the conformal class of the second fundamental form of a surface in Euclidean space is invariant by projective transformations, and hence well-defined in projective geometry. Moreover, near hyperbolic points this form encodes precisely the set of asymptotic directions, and near elliptic points it encodes a conformal class of Riemannian metrics, or unoriented 1-dimensional complex structure.
+
+This suggests a break from the hyperbolic tradition, to incorporate locally-convex regions of surfaces, by replacing the asymptotic net with the more general object, the conformal second fundamental form.  In this setting there is no first fundamental form, so we will prefer the inordinal terms \emph{fundamental quadratic form} or \emph{fundamental form}, the conformal class being implicit. For referential convenience we still notate $\II$.
+
+We shall see that this is actually the continuation of a different tradition, the study of \emph{conjugate directions}.
+
+\subsection{Other versions of $\II$}
+
+One of the consequences of \cite{calabi} is a generalization of the form $\II$ to hypersurfaces in unimodular affine geometry. Further, in 1979 Griffiths and Harris exhibited linear systems $(|\II|,|\text{III}|,|\text{IV}|...)$ of hypersurfaces of degrees $(2,3,4...)$ associated with each point of a complex analytic submanifold of a complex linear or complex projective space, the linear system $|\II|$ generalizing the usual $\II$ in a certain sense \cite{gh}. Although they emphasize the complex analytic case, their construction, which is based on the method of moving frames, still applies in the context of smooth submanifolds of a real linear or real projective space. Consult the book of Akivis and Goldberg \cite{ag} for an exposition along these lines.
+
+The restrictions of these much more general constructions to the case of surfaces in real 3-space are computationally equivalent to the notion exposited here. However, the point of view of \cite{gh} would be that the linear system of quadrics at elliptic points is a system of empty varieties (since they do not have real points).
+
+\subsection{Metrics in 2 dimensions}\label{metrics2d}
+
+In this section we explain how to translate between:
+\begin{enumerate}
+\itemsep0em
+\item{a quadratic form on a 2-dimensional real or complex vector space, up to multiplication by a scalar,}
+\item{a corresponding involution of a hyperbolic plane (in the real case) or a hyperbolic 3-space (in the complex case), and}
+\item{the orthogonality operator on the (real or complex) projective space.}
+
+\end{enumerate}
+
+The reader already familiar with this translation may wish to skip to section \ref{asympdir}.
+
+\subsubsection{Hyperbolic involutions}
+
+\begin{proposition}
+\text{}
+\begin{enumerate}
+\itemsep0em 
+\item{\label{functor2}
+There is a functor that associates:
+	\begin{itemize}
+	\itemsep0em 
+	\item{To each 2-dimensional real vector space $U$ a hyperbolic plane $K$ with ideal boundary equal to $\mathbb{P}U=\mathbb{P}_{\R}U$.}
+	\item{To each isomorphism of such vector spaces an isometry of hyperbolic planes.}
+	\end{itemize}
+}
+\item{\label{functor2c}
+There is a functor that associates:
+	\begin{itemize}
+	\itemsep0em 
+	\item{To each 2-dimensional complex vector space $W$ a hyperbolic 3-ball $H$ with ideal boundary equal to $\mathbb{P}W=\mathbb{P}_{\mathbb{C}}W$}
+	\item{To each complex-linear isomorphism of such vector spaces an orientation-preserving isometry of hyperbolic spaces.}
+	\end{itemize}
+}
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+
+(\ref{functor2}) Given a real vector space $U$ of dimension 2, consider the projective plane $\mathbb{P}(S^{2}U)$. The square map $U\rightarrow  S^{2}U$ embeds $\mathbb{P}U$ as a smooth conic $C$ in this plane. We set $K$ equal to its interior. Note that this is well-defined by $C$: In any affine chart containing $C$, $K$ is the interior of the convex hull of $C$.
+
+$K$ is the projective model of the hyperbolic plane. The hyperbolic metric of $K$ can be defined in terms of cross-ratios of points on projective lines (see e.g. \cite{billiards} page 43). Namely, if $p$ and $q$ are distinct points in $K$, let $p',q'$ denote the points of intersection of $\partial K = C$ with the line spanned by $p,q$. Then the hyperbolic distance between $p$ and $q$ is defined by the formula
+
+\begin{align}\label{hilb}
+d(p,q):=\tfrac{1}{2}\left|[p',p,q,q']\right| 
+\end{align}
+
+When $K$ is replaced with an arbitrary convex ball in real projective space of arbitrary dimension, the metric defined by the formula (\ref{hilb}) is also known as the \emph{Hilbert metric} (\cite{guo} page 2).
+
+Since the cross-ratio is a projective invariant, any linear isomorphism $U\rightarrow  U'$ induces an isomorphism of projective spaces $\mathbb{P}(S^{2}U)\rightarrow \mathbb{P}(S^{2}U')$ mapping $K(U)$ isometrically onto $K(U')$.
+
+(\ref{functor2c}) Let $W$ be a complex vector space of dimension 2. If $V$ is any complex vector space, denote by $\overline{V}$ the complex conjugate vector space, and denote an element $v\in V$ regarded as an element of $\overline{V}$ by $\overline{v}$.
+
+$W\otimes_{\C}\overline{W}$ has a canonical real structure $\sigma$ equal to the $\C$-linear isomorphism
+
+\begin{align*}
+\sigma: W\otimes_{\C}\overline{W}&\rightarrow \overline{ W\otimes_{\C}\overline{W}}\\
+ w_1 \otimes \overline{w_2} &\mapsto w_2\otimes \overline{w_1}
+\end{align*}
+
+Denote the $\sigma$-real subspace of $W\otimes_{\C}\overline{W}$ by $\overline{S}^{2}W$. In fact, if a real structure is chosen on $W$ with real subspace $U\subset W\cong U\otimes_{\R}\C$, $\overline{S}^{2}W$ is the identified with the sum $S^{2}_{\R}U\oplus i \L^{2}_{\R}U$ by means of the set inclusions
+
+\begin{align*}
+ S^{2}_{\R}U \subset U\otimes_{\R}U\subset W\otimes_{\C}\overline{W}\\
+\L^{2}_{\R}U \subset U\otimes_{\R}U\subset W\otimes_{\C}\overline{W}
+\end{align*}
+
+$\overline{S}^{2}W$ is also equal to the Hermitian forms on $W^{*}$, meaning the forms which are $\R$-bilinear, complex-conjugate symmetric, and $\C$-sesquilinear ($\C$-linear and $\C$-antilinear in the respective arguments).
+
+Denote by $D$ the determinantal locus of $W\otimes_{\C}\overline{W}$, the complex quadric hypersurface consisting of tensors of rank less than 2. By definition the set of $\sigma$-real points of $D$ is the image of the ``Hermitian square":
+
+\begin{align*}
+W & \rightarrow  \overline{S}^{2}W \\
+w & \mapsto w\otimes \overline{w} 
+\end{align*}
+
+Evidently the complex span of each $w$ maps into the real span of its image $w\otimes \overline{w}$, so that there is a well-defined embedding
+
+\[\mathbb{P}_{\mathbb{C}}W\rightarrow  \mathbb{P}_{\R}\overline{S}^{2}W\cong \mathbb{RP}^{3}\]
+
+The restriction of the quadratic function defining $D$ to $\overline{S}^{2}W$  turns out to have signature $(1,3)$; this is because this restriction is the determinant function with respect to a representation of the elements of $\overline{S}^{2}W$ by complex-conjugate-symmetric $2\times 2$ matrices. Therefore the image of this embedding is an ellipsoid. We set $H$ equal to the interior of this ellipsoid. $H$ is the projective model of the hyperbolic 3-space. The hyperbolic metric of $H$ is defined by the formula (\ref{hilb}), just as in the case (\ref{functor2}). The complex-linear automorphisms of $W$ induce real-linear automorphisms of $\overline{S}^{2}W$, and hence isometries of $H(W)$.
+
+These isometries are orientation-preserving for the following reason. The complex-linear automorphisms of $W$ preserve the canonical orientation of $\P_{\C}W\cong \partial H$ as a 1-dimensional complex manifold. Were the extension to the interior $H$ orientation-reversing, it would reverse the orientation of $\partial H$.
+\end{proof}
+
+\begin{proposition}
+\text{}
+\begin{enumerate}
+\itemsep0em 
+\item{\label{180rot}
+The non-zero complex scalar equivalence classes of non-degenerate quadratic forms $q\in S^{2}\mathbb{C}^{2*}$ are naturally identified with hyperbolic isometries of $H=H(\mathbb{C}^2)$ which are rotations by 180 degrees about some line.}
+\item{\label{realforms}
+The complex non-zero scalar equivalence classes of non-degenerate quadratic forms, elements in $S^{2}\mathbb{C}^{2*}$, which have a real representative $q\in S^{2}\R^{2*}$, belong to one of two types:
+	\begin{enumerate}
+	\itemsep0em 
+	\item{\label{hyp}The axis of rotation of the corresponding 3d isometry lies in the hyperbolic plane $K(\R^{2})$ associated to the real part $\R^2\subset \mathbb{C}^{2}$.}
+	\item{\label{ell}The axis of rotation of the corresponding 3d isometry is perpendicular to the hyperbolic plane $K\subset H$.}
+	\end{enumerate}
+}
+\item{\label{par}The non-zero complex scalar equivalence classes of degenerate quadratic forms with a real representative $q\in S^{2}\R^{2*}$ are naturally identified with points of $\partial K(\mathbb{R}^{2})\cong \mathbb{RP}^{1}$.}
+\item{\label{orth}The restriction to the ideal boundary $\partial H\cong \P(\C^2)$ of one of the involutions (\ref{180rot}), corresponding to $q$, is the $q$-orthogonality operator defined on the set of complex 1-dimensional subspaces of $\C^{2}$.}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+
+(\ref{180rot}) Given $q\in S^{2}\mathbb{C}^{2*}$, non-degeneracy means that $q$ has two distinct roots in $\mathbb{CP}^{1}$. The unordered pair uniquely determines the complex non-zero scalar equivalence class of $q$. There is a unique line of $H=H(\mathbb{C}^{2})$ joining these roots, regarded as ideal points. About each line there is a unique rotation by 180 degrees.
+
+(\ref{realforms}) If, further, $q$ is actually real, the set consisting of the two roots is preserved by complex conjugation. Thus the line they span in $H$ is invariant by reflection in the plane $K$. Such lines either lie in the plane or are perpendicular to it with respect to the hyperbolic geometry of $H$.
+
+(\ref{par}) If $q$ is degenerate but non-zero, it has $1$ repeated root and this root determines the class of $q$. The root is real if and only if $q$ is real.
+
+(\ref{orth}) By definition, the two roots of $q$ are two transverse 1-dimensional complex subspaces of $\mathbb{C}^{2}$ which are individually equal to their own $q$-orthogonal complements, and they are the only two such subspaces. Assuming that the $q$-orthogonality is projective linear as a transformation of $\partial H(\C^{2})\cong \P(\mathbb{C}^2)$, its extension to $H$ must be the unique non-identity involutive isometry fixing the pair of ideal points given by the roots.
+
+The assumption of projective linearity is in fact correct. Use the matrix identity
+
+\[ v^{t}QQ^{-1}\begin{pmatrix}0&1\\-1&0\end{pmatrix}v=0\]
+
+where $Q$ is the matrix of $q$ with respect to a basis for $\C^{2}$. Then the $q$-orthogonal complement of the span of $v\in \C^{2}$ is the span of $Q^{-1}\begin{pmatrix}0&1\\-1&0\end{pmatrix}v$.
+
+\end{proof}
+
+\begin{corollary}
+\label{involutions}
+The real non-zero scalar equivalence classes of non-degenerate real quadratic forms $q\in S^{2}\R^{2*}$ are naturally identified with the non-identity projective linear involutions of $\partial K=\mathbb{P}(\mathbb{R}^{2})$ and also with the non-identity involutive isometries of the hyperbolic plane $K(\R^2)$:
+\begin{itemize}
+\itemsep0em 
+\item{reflections of the hyperbolic plane, with two fixed points on the ideal line $\P(\R^{2})$, or}
+\item{180 degree rotations of the hyperbolic plane about some point, with no fixed points on $\P(\R^{2})$.}
+	\end{itemize}
+\end{corollary}
+
+%\subsubsection{Classification of forms; surface terminology}
+
+\begin{note}From now on we will not distinguish explicitly between orientation-preserving isometric involutions of the hyperbolic 3-space, non-zero complex scalar equivalence classes of complex quadratic forms in 2 dimensions, and their associated orthogonality operators. Similarly we will not distinguish between isometric involutions of the hyperbolic plane, non-zero real scalar equivalence classes of real quadratic forms in 2 dimensions, and their associated orthogonality operators.
+\end{note}
+
+%The forms (\ref{hyp}) arise as the second fundamental form of a classical surface in $\R^3$ at a \emph{hyperbolic} point, and in this case the component of the identity of the group of isometries of the hyperbolic plane commuting with the involution (preserving the form) is a non-compact 1-dimensional group consisting of \emph{hyperbolic} transformations.
+
+%Similarly the forms (\ref{ell}) arise at \emph{elliptic} points, and in this case the component of the identity of the group of isometries of the hyperbolic plane commuting with the involution (preserving the form) is a compact 1-dimensional group consisting of \emph{elliptic} transformations.
+
+%The forms (\ref{par}) arise at \emph{parabolic} points, and in this case the component of the identity of the group of isometries of the hyperbolic plane preserving the form is a non-compact 1-dimensional group consisting of \emph{parabolic} transformations.
+
+
+\subsection{Asymptotic directions}\label{asympdir}
+
+% The proof of the following can be found in most classical differential geometry texts, for example \cite{eisenhardt}.
+
+Recall that $M\rightarrow P^{3}$ denotes a smooth immersed surface. The definitions of characteristic, envelope, and osculating plane can be found in most classical differential geometry texts, e.g. \cite{eisenhardt}.
+
+\begin{proposition} \label{asympprops}Choose a tangent direction $b$ at a point $m\in M$. The following are equivalent:
+\begin{enumerate}
+\itemsep0em 
+\item{The osculating plane at $m$ of a curve belonging to $M$ and tangent to $b$ is equal to the tangent plane of $M$ at $m$.}
+\item{Let $(u,v)$ be local coordinates on $M$, and let $X(u,v)\in V$ be a homogeneous parameterization of $M\subset  P^{3}$, with respect to which $\frac{\D}{\D u}|_m$ corresponds to $b$.
+
+$X_{uu}$ belongs to the span of $X$, $X_u$, and $X_v$ evaluated at $m$.}
+\item{The tangent line through $b$ makes jet-contact with $M$ of order greater than $1$ at $m$.}
+\end{enumerate}
+
+If $M$ is also non-planar at $m$, meaning that the dual $M^{*}$ is either a smooth surface or a curve in $P^{3*}$, then these conditions are equivalent to:
+\begin{enumerate}
+\itemsep0em
+\setcounter{enumi}{3}
+\item{\label{envpro}The envelope of the tangent planes to $M$ along a curve belonging to $M$ and tangent to $b$ at $m$ has for its characteristic at $m$ the line of $ P^{3}$ through $b$.}
+\end{enumerate}
+\end{proposition}
+
+\begin{definition} A tangent direction $b$ to a surface $M$ satisfying the conditions of the previous proposition is called \emph{asymptotic}.
+\end{definition}
+
+The condition Proposition \ref{asympprops}(\ref{envpro}) is part of a slightly more general construction:
+
+\begin{proposition}\label{conjeq} Let $b$ and $c$ be tangent directions to $M$ in $P^3$ at $m$. The following are equivalent:
+\begin{enumerate}
+\itemsep0em 
+\item{The tangent line through $b$ is the $m^{\text{th}}$ characteristic of the envelope of the tangent planes to $M$ along a curve tangent to $c$.}
+\item{The tangent line through $c$ is the $m^{\text{th}}$ characteristic of the envelope of the tangent planes to $M$ along a curve tangent to $b$.}
+\end{enumerate}
+\end{proposition}
+
+For the proofs of Propositions \ref{asympprops} and \ref{conjeq} see \cite{eisenhardt}.
+
+\begin{definition} Tangent directions $b$ and $c$ to a surface $M$ satisfying the conditions of the Proposition \ref{conjeq} are called \emph{conjugate}.
+\end{definition}
+
+So an asymptotic direction is precisely a self-conjugate direction.
+
+\subsection{The projective fundamental form II in the smooth category}\label{projIIform}
+
+\subsubsection{Definition by conjugacy\label{firstIIprojinv}}
+
+The following proposition seems to have been well-known to classical authors. The proof can be found in \cite{eisenhardt} on page 127. For our purposes, we can use the definition of the second fundamental form $\II$ for surfaces in Euclidean space appearing in (\cite{bdocarmo} page 154).
+
+%or \cite{lane} on page **.
+
+\begin{proposition} Tangent directions $b$ and $c$ to a surface $M$ are conjugate if and only if $\II(b,c)=0$, where $\II$ is the second fundamental form of the surface $M$, calculated in any affine chart for $ P^{3}$ with respect to any Euclidean metric compatible with the affine structure.
+\end{proposition}
+
+Thus, not only is the conformal class of the form $\II$ well-defined on any smooth projective surface, but the representation of it by means of its orthogonality operator is given by a projectively-manifest construction. This justifies the following definition:
+
+\begin{definition} The fundamental form $\II$ of a smooth projective surface $M$ in $P^{3}$ is the conformal class of metrics preserved by the automorphisms of the projectivized tangent spaces of $M$ which preserve the conjugate relation.
+\end{definition}
+
+\begin{note}
+It seems that classical authors did not observe that this conformal class is actually determined by its orthogonality operator, as described in section \ref{metrics2d}. Hence the hyperbolic tradition.
+
+Moreover, in some areas \emph{conjugate directions} eventually came to mean the generalization: any basis for a tangent space of a hypersurface of a Riemannian manifold of arbitrary dimension which diagonalizes its second fundamental form there. This definition insinuates that the presence of the second fundamental form is a prerequisite for the notion of conjugacy, which would preclude a definition of $\II$ in terms of conjugacy.
+\end{note}
+
+\begin{note} The construction defining $\II$ can be extended to a natural mapping, from the space of $2$-jets of curves in $M$, into $P^{3}$:
+
+\[\psi: J^{2}(1,M)\rightarrow P^{3} \]
+
+Let $\gamma$ be a smooth curve in $M$ having $2$-jet $j$ and tangent direction $t$ at $m$. We defined $\II_M(t)$ to be the direction of the characteristic line of the first-order envelope of the family of tangent planes to $M$ along $\gamma$ at $m$; this only depended on the $1$-jet $t$ of $\gamma$. On the other hand, the second-order envelope of this family\footnote{See \cite{myenvpaper}, by the present author, for generalities concerning envelopes and envelope order.}, which is the edge of regression of the developable surface comprised of the characteristic lines along $\gamma$, presumably depends only on the $2$-jets of $\gamma$. If $p\in P^{3}$ denotes the point of the edge of regression lying on the characteristic through $m\in M$, we set $\psi(j)=p$.
+
+In case $M$ is hyperbolic, so that it admits asymptotic curves, the $2$-jets $j_m$ of an asymptotic curve through $m\in M$ satisfy $\psi(j_m)=m$; that is, the asymptotic curves are \emph{equal} to the edges of regression of the associated tangent-plane family.
+
+% See \cite{myenvpaper}, by the present author, for the notions of envelope and characteristic as they appear here.
+\end{note}
+
+% e.g. the book Discrete Integrable Systems     Yuri Suris ...
+
+\subsubsection{Definition by line duality}
+
+Let $M^{*}$ denote the dual surface of $M$, in $P^{3*}$. Assume that $M$ is non-degenerate in the sense that the map $M\rightarrow  M^{*}$ is a diffeomorphism.
+
+Denote the projective duality which maps lines of $P^{3}$ to lines of $P^{3*}$ by $*$. Its formula with respect to Pl\"ucker line coordinates is given by the scalar equivalence class of the duality $\L^{2}V\rightarrow  \L^{2}V^{*}$, which is furnished by a choice of volume form on $V$.
+
+Choose local coordinates of $M$ and regard $M$ and $M^*$ as simultaneously parameterized surfaces. Let $\D$ be a tangent direction in the coordinate space, with corresponding tangent lines $\D M$ and $\D M^*$.
+
+\begin{proposition} Identify $\II_M$ with the corresponding involution on the set of tangent lines to $M$.
+\begin{align}
+\II_{M}(\D M)= (\D M^*)^*
+\end{align}
+\end{proposition}
+
+This justifies the following equivalent definition.
+
+\begin{definition} The involution $\II_M$ at non-degenerate points of $M$ is
+\[\II_{M}(\D M)= (\D M^*)^*\]
+\end{definition}
+
+\subsubsection{Definition by instrinsic and extrinsic contact}
+
+The intrinsic contact structure $\alpha$ on the space of contact elements $L=\P T^{*}M$ is usually defined in terms of the Liouville 1-form on $T^*M$ (\cite{anacan} page 61). It can alternatively be defined in terms of the immersion $M\rightarrow P^{3}$ as follows.
+
+In this section, by passing to sufficiently small neighborhoods of $M$, assume $M$ is embedded in $P^{3}$. The natural isomorphism peculiar to dimension $2$, $\P TM\cong \P T^{*}M$, implies that $L$ can be regarded as the space of tangent lines to $M$ in $P^{3}$. That is, $L$ is a hypersurface in the 4-dimensional space $Q=\operatorname{Gr}(2,4)$ of all lines in the projective 3-space.  The directions belonging to the contact planes in $L$ are given by the tangent directions to the curves of contact elements (tangent directions) along smooth curves in $M$. The corresponding families of tangent lines trace developable surfaces in $P^{3}$ by construction, and so these directions are null when regarded as directions in the larger space $Q$.\footnote{See e.g. \cite{ww} for the definition of the conformal pseudo-Riemannian metric of signature $(2,2)$ on $\operatorname{Gr}(2,4)$, and its associated null cones.} That is, the projective 2-plane $\P T_l L$ meets the null quadric surface $N$ in the 3-space $\P T_l Q$ along a line which is the projectivization of the usual contact hyperplane of $L$.
+
+On the other hand: $N$ is known to be the doubly-ruled quadric surface, and 2-planes like $\P T_l L$ containing a line of this quadric are precisely tangent planes of this quadric at some point. But tangent planes of this quadric are precisely the spans of \emph{two} lines, one from one ruling and one from the other, which meet at the contact point of the tangent plane with the quadric.
+
+The second projective line in $\P T_l L\subset \P T_l Q$ therefore determines a second hyperplane field $\beta$ in $L$.
+
+\begin{proposition} Assume that $M$ is non-degenerate in $P^3$.
+\begin{enumerate}
+\itemsep0em 
+\item{\label{exch}The involution $\II_M$ exchanges the hyperplane fields $\alpha$ and $\beta$.}
+\item{\label{bcontact}$\beta$ is a contact structure.}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof} (\ref{exch}) The plane fields $\alpha$ and $\beta$ in $\P T^*M$ are defined by the respective $\alpha$ and $\beta$ null rulings of the null quadric $N\subset \P T_l Q$ at the points $l$ which label tangent lines of $X$, points of $L$.\footnote{See \cite{ww} for the $\alpha$ and $\beta$ terminology, originally due to Klein.}
+
+In precisely the same manner, plane fields $\alpha^*$ and $\beta^*$ in $\P T^*M^*$ are defined over $X^*\subset P^{3*}$, with the change of notation to record the change of underlying projective space from $P^3$ to $P^{3*}$. 
+
+Under line duality, $\alpha$ corresponds to $\beta^*$ and $\beta$ corresponds to $\alpha^*$. On the other hand, the tangent map $M\rightarrow  M^*$ corresponds $\alpha$ with $\alpha^*$, and $\beta$ with $\beta^*$, since $\alpha$ and $\alpha^*$ are the intrinsic contact structure of the manifold $M\cong M^*$. Therefore II, which is the composition of these two maps, exchanges the $\alpha$ and $\beta$ plane fields.
+
+(\ref{bcontact}) is an immediate consequence of (\ref{exch}). II is a diffeomorphism. Since $\alpha$ is a contact structure, the pullback $\beta = \II^*(\alpha)$ is also a contact structure.
+
+\end{proof}
+
+\begin{definition} $\beta$ will be called the \emph{extrinsic contact structure} over the surface $M\subset P^{3}$.
+\end{definition}
+
+\begin{proposition} A differentiable fiber-wise involution of $\P T^{*}M$ exchanging $\alpha$ and $\beta$ is uniquely determined.
+\end{proposition}
+
+\begin{proof} Suppose $\II$ and $\II'$ are two automorphisms of the bundle $\P T^*M$ exchanging $\alpha$ and $\beta$. Their composition preserves both. Since this composition preserves the standard contact structure, and acts fiberwise, it fixes pointwise all values of Legendre lifts of curves of $M$. All points of $\P T^{*}M$ belong to such a lift. Therefore this composition is the identity, and $\II=\II'$.
+\end{proof}
+
+For completeness let us record this definition formally.
+
+\begin{definition} The involution $\II$ of $\P TM\cong \P T^*M$ at non-degenerate points of $M$ is the unique involution exchanging contact structures $\alpha$ and $\beta$.
+\end{definition}
+
+
+% \subsection{Argument against asymptotic generalization}
+
+% Rather than checking this directly, one simply shows that the asymptotic directions are the tangent cone of the intersection of the surface with its tangent plane, at the contact point. Equivalently: the asymptotic directions are the tangent lines of smooth curves belonging to the surface at point for which the osculating plane of the curve equals to the tangent plane of the surface.
+
+% It seems reasonable to assume that since there is no obvious analogue of the tangent plane construction at elliptic points, the conformal class of the form II at such points is not invariant by projective transformations, and hence not defined in smooth projective geometry.
+
+% This assumption appears to be bolstered by the following reasoning: A projective transformation can act as an arbitrary shear transformation of any given tangent plane of a surface, and there are no conformal metrics preserved by all such transformations. However, this would be a fallacy of the usual equivariant-versus-invariant type. Such a transformation alters the surface as well. A structure on the tangent plane inherited from the surface in space may yet be well-defined. Indeed, if efficacious, this argument would contradict the existence of asymptotic directions in projective geometry.
+
+%The smooth projective second fundamental form appears on page 38 of Akivis and Goldberg, "Projective differential geometry of submanifolds" 1993. And indeed also in Griffiths and Harris (by ignoring their stipulation that the things are all complex analytic)
+
+\subsection{Smooth convex projective surfaces}
+
+In this section suppose that $M$ is a closed non-degenerate submanifold of $P^{3}$, that it belongs to an affine chart, and that it is convex in this chart. Evidently $\II_M$ has Riemannian signature, so that it is a conformal structure on the surface $M$ in the usual sense. By selecting an orientation for $M$, we can regard $\II_M$ as a 1-dimensional complex structure on $M$. By the uniformization theorem, $M$ admits a rational parameterization $\mathbb{CP}^{1}\cong M$, unique up to precomposition by $PSL(2,\mathbb{C})$.
+
+The image in $M$ of the 3-dimensional collection of circles of $\mathbb{CP}^{1}$ is independent of the parameterization, so that the collection forms a projective invariant of $M$. Let us call them the \emph{projective circles} of $M$.
+
+\begin{question}\label{qcf} What is a direct description of the family of projective circles of $M$ in terms of projective geometry?
+\end{question}
+
+The answer is well-known in one case:
+
+\begin{fact} If $M$ is an ellipsoid, the projective circles of $M$ are the intersections of hyperplanes of $P^{3}$ with $M$.
+\end{fact}
+
+The naive answer in general, that the projective circles are the plane intersections with $M$, is probably incorrect:
+
+\begin{proposition}Suppose that the family of projective circles of $M$ is the family of plane intersections with $M$. Suppose further that the pencil of planes containing a given line of $P^{3}$ meets $M\cong \mathbb{CP}^{1}$ in the orbits under $S^{1}\subset \mathbb{C}^{*}$ of a holomorphic $\mathbb{C}^{*}$ action. Then the interior $I$ of $M$ with the Hilbert metric is Riemannian and isometric to 3-dimensional hyperbolic space.
+\end{proposition}
+
+% tabachnikov billiard p43 has cr metric formula; p67 has chasles(?) theorem on tangent to n-2 confocal quadrics, geodesics' tangent lines
+
+\begin{proof} We will construct a map $f$ from the interior $I$ of $M$ to the interior $H$ of a standard ellipsoid $\mathbb{CP}^{1}\subset P^{3}$. Note that $H$ is the projective model of the hyperbolic 3-space. Express each point $p\in I$ as a transverse intersection of 3 hyperplanes of $P^{3}$, in such a way that the hyperplanes depend smoothly on the point. According to the assumption, the 3 curves of intersection of these hyperplanes with $M$ must correspond to circles in $\mathbb{CP}^{1}$ with respect to any fixed rational parameterization $M\cong \mathbb{CP}^{1}$. These circles are precisely intersections of $\mathbb{CP}^{1}$ with 3 hyperplanes of $P^{3}$. Set $f(p)$ equal to the intersection of these hyperplanes in $H$.
+
+Recall that the \emph{Hilbert metric} on the interior $I$ of a convex projective surface $M$ is a projectively-invariant distance metric whose formula is given by
+
+\[d(p,q)=|2\operatorname{ln}[p',q',p,q]|,\]
+
+where $[,,,]$ denotes the cross-ratio, and $p',q'$ denote the points of intersection of the line $pq$ with $M$.
+
+Recall also that the cross-ratio of 4 points $p_1,p_2,p_3,p_4$ on a line in a 3-dimensional projective space can be calculated by means of the extrinsic geometry as follows. Express the line as the intersection of two fixed planes. Select arbitrarily 2 planes $P_1,P_2$ transverse to this line, meeting the line in $p_1$ and $p_2$. There are unique planes $P_3,P_4$ containing the line $P_1\cap P_2$ and passing through $p_3,p_4$ respectively. The set of planes containing $P_1\cap P_2$ forms a projective line, so that it supports its own cross-ratio function. It turns out that $[p_1,p_2,p_3,p_4]=[P_1,P_2,P_3,P_4]$.
+
+By the assumption, the map $f$ induces an isomorphism of smooth projective structures along each line. Therefore it is an isometry between the Hilbert metric of $I$ and the Hilbert metric of $H$. However, the Hilbert metric of $H$ is actually a Riemannian metric; the hyperbolic metric. On the other hand, the Hilbert metric on $I$ is known to be Finsler, and \emph{not} Riemannian, unless the interior of $M$ is isometric to the interior of the ellipsoid, i.e. to hyperbolic 3-space (\cite{hilbertmetricfinslerpaper}, page 296).
+\end{proof}
+
+\begin{note} One might like to conclude further that $M$ \emph{is} an ellipsoid, since its Hilbert metric is isometric to that of the interior of the ellipsoid. However, the question of characterization of special Hilbert geometries turns out to be rather subtle. See the survey \cite{guo}.
+\end{note}
+
+\begin{note} The stipulation that the pencils of planes meet $M$ in $S^{1}$ orbits for a $\mathbb{C}^{*}$ action seems to be required in order that they correspond to a pencil of plane intersections of the standard ellipsoid $\mathbb{CP}^{1}\subset P^{3}$. That is, to rule out the possibility that a pencil of planes may meet $M$ in an exotic foliation of $M\cong \mathbb{CP}^{1}$ by circles. The case of the osculating circles to a parabola in $\mathbb{C}\cong \R^{2}$ suggests that such an exotic foliation may not be so far-fetched.
+\end{note}
+
+\section{Generalized Wilczynski equations}\label{genwil}
+%\subsection{Historical background}\label{history}
+
+%There are two important quadratic forms in the classical theory of surfaces in $\R^3$. The \emph{first fundamental form} I is the metric on a surface induced by the ambient Euclidean space. The \emph{second fundamental form} II is the differential of the Gauss mapping from the surface to its unit normals in $\R^3$, expressed as a quadratic form by means of I. I and II generalize to arbitrary hypersurfaces of $\R^{n}$. Classical theorems of Gauss, Codazzi, and Mainardi imply that if tensors I and II are given on a manifold and satisfy certain conditions, they completely determine the embedding or immersion in $\R^{n}$ up to global isometry.
+
+There is a structure theorem in classical smooth projective surface theory, due to Wilczynski, which applies near hyperbolic points.
+
+%It is analogous to the characterization of the local extrinsic geometry of submanifolds of Euclidean space by means of the forms I and II which may be attributed to the independent work of Gauss, Codazzi, and Bonnet.
+
+Tabachnikov and Ovsienko showed that it has a natural formulation in terms of an integrable system \cite{to}. The treatment given below is an adaptation of their formulation to the general case, to include elliptic points.
+
+\subsection{Jet notation}
+ 
+The details concerning the notation introduced in this section can be found in the preliminary chapter of \cite{gromovPDR}.
+
+Temporarily denote by $M$ an arbitrary smooth manifold. The jet bundles of a smooth fiber bundle $F$ over $M$ always form a tower
+
+\[J^{0}\leftarrow J^{1} \leftarrow J^{2} ...\]
+
+in which $J^{s}$ is an affine bundle over $J^{s-1}$. The structure vector bundle for this affine bundle is $S^{s}T^{*}M\otimes \operatorname{Vert}$, where $\operatorname{Vert}$ denotes the pullback to $J^{s-1}$ of the vertical bundle over $J^{0}$, the kernel of $TJ^{0}\rightarrow  TM$.
+
+From now on let $J^{s}$ denote $J^{s}(M,\R)$, the bundle of $s$-order jets of real-valued functions on $M$. Since $M\times \R \rightarrow  \R$ is a trivial vector bundle, they naturally form a nested sequence
+
+\[J^{0}\subset J^{1}\subset J^{2} ...\]
+
+of \emph{vector} bundles over $M$. The associated graded vector bundle of quotients is naturally isomorphic to the bundle of graded algebras $S^{\bullet}T^{*}M\rightarrow  M$. The quotient map identifies the grades with the successive kernels of the original projections $J^{s}\rightarrow  J^{s-1}$, so that
+
+\[ J^{s} = \bigoplus_{k=0}^{k=s} S^{k}T^{*}M \]
+
+
+\subsection{The differential equations and $\II$ as a characteristic variety}
+
+We re-specialize to the case that $M$ is a smooth 2-dimensional manifold immersed in $P^{3}$. $V$ still denotes a 4-dimensional real vector space, and $P^{3}:=\P V$. Denote $J^{s}:=J^{s}(M,\R)$ and $\bar{J}^{s}:=J^{s}(M,V)=J^{s}\otimes V$.
+
+
+\begin{proposition}\label{findingE} Suppose that $M$ in $P^{3}$ is non-degenerate. Choose a lift $X:M\rightarrow  V \backslash \{0\}$ representing it.
+\begin{enumerate}
+\item{\label{constructEbarE}The $\GL(V)$ orbits of $X$ all satisfy a common second-order system of two linear partial differential equations $\bar{E}\subset \bar{J}^{2}=J^{2}\otimes V$ of the form $\bar{E}=E\otimes V$, where $E\subset J^{2}$ is a rank $4$ vector subbundle. The component functions of these orbits satisfy $E$.}
+\item{\label{charvar}The fundamental form $\II_M\subset S^{2}T^{*}M$ is the characteristic variety of $E$, the common kernel of the two-dimensional system in $S^{2}TM\cong (S^{2}T^{*}M)^{*}$ consisting of the symbols of the operators defining $E$.}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof} Since $M$ is non-degenerate, there are only two cases: hyperbolic and elliptic surfaces $M$.
+
+The proof in the hyperbolic case follows directly from \cite{to} page 111-112, or from Wilcynski's original work \cite{wil}. We will summarize their reasoning in the present language and then proceed to the the proof in the elliptic case.
+
+Select a local parameterization for $M$ whose coordinate directions are the asymptotic directions. In other words, a parameterization $X(u,v)\in V$ in which the fundamental form $\II_M$ is the conformal class of $dudv$. It follows from Proposition \ref{asympprops} that
+
+\[ X_{uu} \equiv X_{vv}\equiv 0 \mod (X_{u},X_{v},X)\]
+
+In other words, there are functions $a,b,c,p,q,r$ of $(u,v)$ such that
+
+\begin{align*}
+X_{uu} + a X + b X_u + c X_v &=0 \\
+X_{vv} + p X + q X_u + r X_v &=0
+\end{align*}
+
+Set $\bar{E}$ equal to the codimension 2 locus in $\bar{J}^{2}$ described by these equations. Set $E$ equal to the locus in $J^{2}$ satisfied by the same system,
+
+\begin{equation}\label{hyperbolicreduction}
+\begin{split}
+x_{uu} + a x + b x_u + c x_v &=0 \\
+x_{vv} + p x + q x_u + r x_v &=0
+\end{split}
+\end{equation}
+
+where now $x,x_u,x_v,x_{uu},x_{vv},x_{uv}$ denote the fiber coordinates of $J^{2}$. By construction $j^{2}X\subset \bar{E}$ and $\bar{E}=E\otimes V$. Since $\bar{E}$ is $\GL(V)$ invariant, all $\GL(V)$ translates of $j^{2}X$ also lie in $\bar{E}$.
+
+The kernel of the system of symbols $\langle \D_{u}^{2},\D_{v}^{2}\rangle$ of $E$ is the conformal class of $dudv$, which is equal to $\II_M$.
+
+
+%That is, regarding $j^{2}X=j^{2}X(u,v)$ as a map, its values with respect to the isomorphism $\bar{J}^{2}\cong V \oplus (T^{*}M\otimes V) \oplus (S^{2}T^{*}M\otimes V)$ are given by
+
+%\begin{align*}
+%j^{2}X &= X + \begin{bmatrix}du & dv\end{bmatrix} \begin{bmatrix} X_u \\ X_v\end{bmatrix}
+%+ \begin{bmatrix}du & dv\end{bmatrix} \begin{bmatrix}X_{uu} && X_{uv}/2 \\ X_{uv}/2 && X_{vv}\end{bmatrix}\begin{bmatrix}du \\ dv\end{bmatrix}\\
+%&\equiv dudv\otimes X_{uv}\\
+%&\equiv \II_X\otimes X_{uv} \mod \bar{J}^{1}
+%\end{align*}
+
+
+For the locally-convex case, recall that it is always possible to select coordinates $(u,v)$ on $M$ in which a given positive-definite metric is conformal to the flat metric $du^2 + dv^2$. Such coordinates are called \emph{isothermal}. They are usually selected with respect to the \emph{first} fundamental form of a surface.
+
+Select $\II_M$-isothermal coordinates $(u,v)$. To ascertain the consequences of this choice, we will apply the formula for the second fundamental form in an affine chart. With respect to some fixed isomorphism $V\cong \R^{4}$, select a local affinization of $M$ by $(y,1)$, where $y:U\rightarrow \R^3$ for a chosen sufficiently small neighborhood $U$ in the coordinate space $\{(u,v)\}$.
+
+According to \cite{bdocarmo} page 154, $\II_M$ is conformal to
+
+\[ |y_u,y_v,y_{uu}|du^{2} + |y_u,y_v,y_{vv}|dv^{2} + |y_u,y_v,y_{uv}|dudv\] %sort out the 2
+
+where $|,,|$ denotes the standard volume form of $\R^{3}$.
+
+Then $\II_M\equiv du^{2}+dv^{2}$ implies
+\begin{align*}
+y_{uu}-y_{vv} \equiv y_{uv} \equiv 0 \mod (y_u,y_v)
+\end{align*}
+Setting $X=f\cdot(y,1)$ for an appropriate function $f$ on $M$, we conclude that, without the need for affine charts, the $\II_M$-isothermal condition is
+\begin{align*}
+X_{uu}-X_{vv} \equiv X_{uv} \equiv 0 &\mod (X,X_u,X_v)
+\end{align*}
+In other words, there are functions $a,b,c,p,q,r$ of $(u,v)$ such that
+\begin{equation}\label{ellipticreduction}
+\begin{split}
+X_{uu-vv} + a X + b X_u + c X_v &=0 \\
+X_{uv} +    p X + q X_u + r X_v &=0
+\end{split}
+\end{equation}
+As before, they determine a differential system $\bar{E}\subset \bar{J}^{2}$ satisfied by $X$ and its $\GL(V)$ translates, and a differential system $E\subset J^{2}$ satisfied by their linear coordinate functions. The kernel of the system of symbols $\langle \D_{uu-vv},\D_{uv}\rangle$ is the conformal class of $du^{2}+dv^{2}$, which is $\II_M$.
+
+\end{proof}
+
+\subsection{The flat connections}
+
+\begin{proposition} \label{idflat} As in Proposition \ref{findingE}, suppose that $M$ is non-degenerate in $P^{3}$ with a chosen lift $X:M\rightarrow  V \backslash \{0\}$.
+\begin{enumerate}
+\item{\label{integrableEbar}There is an open subset of $\bar{E}$ which has a holonomic foliation, i.e. one whose leaves are integrals of the restriction of the contact system of $\bar{J}^{2}$ to $\bar{E}$. The leaves are the $\GL(V)$ orbits of $j^{2}X$. The leaves are also flat sections of a $\GL(V)$-invariant flat connection $\bar{\nabla}$ on the vector bundle $\bar{E}$.}
+\item{\label{descendToE}$\bar{\nabla}$ is the tensor product of a flat connection $\nabla$ on $E$ and the trivial connection on the trivial vector bundle with fiber $V$.}
+\item{\label{viaG}The linear form $p:E\rightarrow  J^{0}\cong \R$ induces an isomorphism from the $4$-dimensional vector space of $\nabla$-flat sections of $E$ over $M$ onto a subspace $\Gamma\subset C^{\infty}(M,\R)$. $\Gamma$ also consists of the restrictions of the linear coordinate functions of $V$ to $X(M)$.
+
+The mapping $M\rightarrow  \P\Gamma^{*}$ assigning to $m\in M$ the hyperplane
+\begin{align*}\{\gamma\in\Gamma| \gamma(m)=0\}\end{align*}
+is equivalent to the original surface $M\rightarrow \P V$, with respect to the evident isomorphism $\Gamma^*\cong V$.
+}
+\end{enumerate}
+\end{proposition}
+\begin{proof} (\ref{integrableEbar} and \ref{descendToE}) The action of $\GL(V)$ is free on the non-degenerate 2-jets belonging to $\bar{J}^{2}$. %(\cite{olver}).
+In particular, it has 16-dimensional $\GL(V)$ orbits there. The dimension of $\bar{E}$ is $2+16$. Therefore the 16-dimensional $\GL(V)$ orbits of the 2-dimensional holonomic section $j^{2}X\subset \bar{E}$ foliate an open subset of $\bar{E}$. 
+
+First observe that the tangent distribution of this foliation, so far just an integrable Ehresmann connection on an open subbundle of $\bar{E}$, is actually the horizontal plane field of a linear connection $\bar{\nabla}$ on $\bar{E}$, by construction the connection induced by a connection $\nabla$ on $E$. Namely, $\nabla$ is the expression of the contact system of $J^{2}$, the codimension 3 Pfaffian exterior differential system generated by the 1-forms
+
+\begin{align*}
+&dx - x_u du -x_v dv \\
+&dx_u - x_{uu} du - x_{uv}dv\\
+&dx_v - x_{uv} du - x_{vv}dv,
+\end{align*}
+
+upon restriction to $E$ by application of the system of equations (\ref{hyperbolicreduction}) in the hyperbolic case and (\ref{ellipticreduction}) in the elliptic case.
+
+In the hyperbolic case the explicit formula is
+
+\begin{equation}
+\begin{split}
+\label{conneq}\nabla = d +&
+\begin{bmatrix} 0 & -1 & 0 & 0 \\ a & b & c & 0 \\ 0 & 0 & 0 & -1 \\cp-a_v & cq-b_v & cr-a-cv & -b\end{bmatrix} du + \\
+&\begin{bmatrix} 0 & 0 & -1 & 0 \\ 0 & 0 & 0 & -1 \\ p & q & r & 0 \\ qa-p_u & qb-p-q_u & qc-r_u & -r  \end{bmatrix}dv
+\end{split}
+\end{equation}
+
+where the matrices are the matrices of linear transformations of the fibers of the vector bundle $E$, written with respect to the trivialization dual to the trivialization by linear forms on $E$ equal to the restrictions of the $4$ coordinate functions $x,x_u,x_v,x_{uv}$ on $J^{2}$. The key step in obtaining (\ref{conneq}) is to use the equations $(x_{uv})_{u}=(x_{uu})_v$ and $(x_{uv})_{v}=(x_{vv})_u$, in order to calculate $d(x_{uv})$ as a linear combination of $x,x_u,x_v,x_{uv}$, with coefficients belonging to $\Omega^{1}(M)$ (that is, coefficients of the form $f(u,v)du+g(u,v)dv$).
+
+In the elliptic case, the reasoning is the same but the calculation is slightly more complicated. One uses the trivialization of $E$ induced by the coordinate functions $x,x_u,x_v,x_{uu+vv}$ instead. The polynomial identities
+\begin{align*}
+ (u^2+v^2)u&= (u^2-v^2)u+2(uv)v\\
+ (u^2+v^2)v&=-(u^2-v^2)v+2(uv)u
+\end{align*}
+imply
+\begin{align*}
+d(x_{uu+vv})&= \left( (x_{uu-vv})_u + 2(x_{uv})_v \right)du +\left( -(x_{uu-vv})_v + 2(x_{uv})_u \right)dv
+\end{align*}
+Then substitution of $x_{uu-vv}$ and $x_{uv}$ using equations (\ref{ellipticreduction}) proceeds as in the hyperbolic case. The result is
+
+\[ \nabla= d+ Adu + Bdv \]
+
+where $A$ and $B$ are given below (transposed for typographical reasons):
+
+\begin{align*}
+&A^{t}=\\
+&\begin{bmatrix}
+0  & a/2 & p & (\tfrac{-b+2r}{2})a+(c+2q)p -a_u-2p_v     \\
+-1 & b/2 & q & (\tfrac{-b+2r}{2})b+(c+2q)q -a-b_u-2q_v   \\
+0  & c/2 & r & (\tfrac{-b+2r}{2})c+(c+2q)r -c_u-2p-2r_v  \\
+0  & -1/2& 0 &  \tfrac{-b-2r}{2}
+\end{bmatrix}\\
+\\
+&B^{t}=\\
+&\begin{bmatrix}
+0  & p & -a/2 & (\tfrac{c+2q}{2})a +(-b+2r)p +a_v-2p_u    \\
+0  & q & -b/2 & (\tfrac{c+2q}{2})b +(-b+2r)q +b_v-2p-2q_u \\
+-1 & r & -c/2 & (\tfrac{c+2q}{2})c +(-b+2r)r +a+c_v-2r_u  \\
+0  & 0 & -1/2 & \tfrac{c-2q}{2} 
+\end{bmatrix}
+\end{align*}
+
+The flatness condition $F_{\nabla}=0$ is implied by $F_{\bar{\nabla}}=0$, which is a consequence of the existence of a basis of sections of $\bar{E}$ which are flat; the section $j^{2}X$ and sufficiently many of its $\GL(V)$ orbits. Clearly it is no trivial matter to write explicitly the integrability conditions in terms of the coefficient functions $a,b,c,p,q,r$. Nevertheless in the hyperbolic case they appear in Wilcynski's original formulation.
+
+(\ref{viaG}) By construction the $\nabla$-flat sections are the $2$-jets of the linear coordinate functions of $V$ restricted to $X(M)$. $p$-evaluation maps the $2$-jet sections back to these original coordinate functions.
+
+In particular, $V^{*}\cong \Gamma$. The equivalence of $M\rightarrow \P \Gamma^{*}$ and $M\rightarrow \P V$ is a matter of notation.
+\end{proof}
+
+%...We conclude that the structure of a projective surface on a manifold $M$ is 
+
+%Let $f$ be a smooth function on $M$. We denote by $d^{k}f$ the section of $S^{k}T^{*}M$ equal to the $k^{\text{th}}$ grade of the $k$-jet of $f$, normalized such that its formula with respect to local coordinates $(x_1,..,x_n)$ for $M$ is
+
+%\[ d^{k}f = \frac{n!}{i_1!..i_n!}\sum_{i_1+..+i_n=k}dx_1^{i_1}..dx_{n}^{i_n}\frac{\D^{i_1}..\D^{i_n}}{\D {x_1}^{i_1}..\D {x_n}^{i_n}}f \]
+
+%This choice has the side effect 
+
+%As a matter of convention we choose the following normalization in defining the symbol $j^{s}f$:
+
+%\[ j^{s}f = f + \begin{pmatrix}s \\ 1\end{pmatrix}d^{1}f + \begin{pmatrix}s \\ 2\end{pmatrix}d^{2}f ... + \begin%{pmatrix}s \\ s-1\end{pmatrix} d^{s-1}f + d^{s}f\]
+
+%This has the following useful effect. The jet bundles $J^{s}$ are themselves trivial vector bundles over $M$, and there is a natural algebra product map $J^{k}(M,J^{l}(M,\R))= J^{k}\otimes J^{l}\rightarrow  J^{k+l}$. Invoking this map implicitly, it follows by a computation that
+
+%\[ j^{k}(j^{l}f)=j^{k+l}f \]
+
+%This simple relation holds only because of the choice of binomial normalizing coefficients.
+
+%In particular, $j^{s}f=j^{1}(j^{1}(..j^{1}f)..)$. The reader may use this and the relation $j^{1}(fg)=(j^{1}f)g+(j^{1}g)f-fg$ to calculate, for example,
+
+%\[ j^{2}(fg)=\begin{bmatrix}f j^{1}f j^{2}f\end{bmatrix}\begin{bmatrix} 0 & 0 & 1 \\ 0 & 2 & 0 \\ 1 & 0 & 0 \end{bmatrix} \begin{bmatrix} g \\ d^{1}g \\ d^{2}g\end{bmatrix}\]
+
+
+
+%\proposition 
+%\text{}
+%\begin{enumerate}
+%\item{\label{recoverSurfaces}The projection $\bar{E}\rightarrow  \bar{J}^{0}=M\times V$ carries the flat sections onto a set of graphs of mappings $M\rightarrow  V$ representing all $M$-parameterized surfaces in $P^3$ projectively equivalent to the given one.}
+%\item{\label{specialFunctions}The projection $E\rightarrow  J^{0}=M\times \R$ carries the flat sections onto a 4-dimensional vector subspace $\Gamma\subset C^{\infty}(M,\R)$ with the following property:
+%Every component function of a $\GL(V)$ translate of the original mapping $M\rightarrow  V$ belongs to $\Gamma$.% Conversely every basis of $\Gamma$ determines a mapping $M\rightarrow  \R\P^{3}$ projectively equivalent to the original given surface.
+%}
+%\end{enumerate}
+%\proof
+%\vspace{1pc} %get rid
+%(\ref{recoverSurfaces}) follows from $\GL(V)$ invariance of the connection on $\bar{E}$. (\ref{specialFunctions}) follows from (\ref{recoverSurfaces}).
+%\vspace{1pc}
+
+%In the language of \cite{gromovPDR},
+
+We conclude that the structure of a non-degenerate projective surface on a 2-manifold $M$ is entirely encoded by a second order integrable system of two linear partial differential equations for functions on $M$, namely $E\subset J^{2}$. The form $\II\subset S^{2}T^{*}M$ is revealed to be its characteristic variety, the common kernel of the system of symbols belonging to $S^{2}TM\cong (S^{2}T^*M)^{*}$.
+
+\begin{note}(\emph{Uniqueness}) This encoding is not quite unique. Technically we have represented a projective surface in the 4-dimensional centro-affine geometry $V$, by means of a choice of section of the tautological line bundle over the surface; a fully projective conclusion would require consideration of the effect of this choice.
+\end{note}
+
+\begin{note}(\emph{Algebraic case}) The reconstruction of a projective surface $M$ in terms of $\Gamma$ appearing as Proposition \ref{idflat}(\ref{viaG}) is obviously reminiscent of an embedding of an \emph{algebraic variety} into a projective space by the means of the vector space $\Gamma$ of global sections of the pullback of the line bundle $\mathcal{O}(1)$ from the target. This formulation suggests that flat connections and integrable differential systems are behind the scenes of projective embeddings even in the algebraic setting. The solutions are the variety's coordinate functions in various lifts to the linear model of the projective space.
+\end{note}
+
+\begin{note} (\emph{Higher dimensions}). The idea seems to generalize immediately to $d$-dimensional submanifolds of a projective space of dimension $n$:
+\begin{enumerate}
+\itemsep0em
+\item{Find the first $s$ for which $s$-jets of $d$-dimensional submanifolds of $\P^{n}$ are free under $\GL(n+1)$.}
+\item{Determine the minimal vector subbundle $\bar{E}\subset \bar{J}^{s}$ containing the $\GL(n+1)$ orbits of the $s$-jet of a given submanifold.}
+\item{Extract if possible an $s$-order integrable differential system $E\subset J^{s}(M,\R)$.}
+\end{enumerate}
+\end{note}
+
+\subsection{Projective normals}
+
+Recall that the differential systems $\bar{E}$ and $E$ associated to a non-degenerate projective surface $M$ depend on the choice of lift $M\rightarrow V$. Despite this the characteristic variety of $E$, the fundamental form $\II_M$, does not. On the other hand the symbol system of $\bar{E}=E\otimes V$ \emph{does} depend on the lift. It specifies a ``normal" to $M$ as follows.
+
+Since $\II_M$ is a non-degenerate conformal metric on $M$, it can be used as an isomorphism $TM\cong T^{*}M$, well-defined up to scale. In particular, it can be used to express itself as a symmetric bivector field $\II_M^{*}$ in $S^{2}TM$. This is also known as the \emph{dual} of $\II_M$. (Note that it is not an ordinary linear dual).
+
+\begin{definition} Let $M\subset P^{3}$ be a non-degenerate surface. Choose a lift $\lambda:M\rightarrow  V$, and regard it as a section of the tautological line bundle over $M$. In this context, let $\lambda$ be called an \emph{internal density}.
+
+Consider the class of $[j^{2}X]$ in $\bar{J}^{2}/\bar{J}^{1}$ as a linear map $S^{2}TM\rightarrow  V$. Define the \emph{normal surface of the internal density $\lambda$} to be the surface in $\P V$ specified by the evaluation $\nu=[j^{2}X](\II_{M}^{*}):M\rightarrow  V$.
+\end{definition}
+
+Note that the values of $\nu$ up to scale only depend on the conformal class of $\II_M^{*}$. On the other hand, the values of $\nu$ are more significantly altered, not just up to scale, by changes of the density $\lambda$.
+
+Assuming that $\nu$ does not map points of $M$ to themselves, by joining the points of $M$ to their $\nu$ images we obtain a \emph{line congruence} ($2$-dimensional family of lines), transverse to $M$, which depends on the internal density $\lambda$. Since $\lambda$ depends on only one functional parameter of $M$, and a line congruence depends on two, we surmise that the line congruences arising this way must be strongly constrained.
+
+\begin{question} What are the properties of the line congruences which occur as ``projective normal line fields" to a given surface? What are the properties of their focal surfaces, or their focal nets upon $M$?
+\end{question}
+
+\subsection{Potential application to surface reconstruction}
+
+Suppose that you wish to determine a surface in Euclidean space up to isometry. One way is to ascertain its local Euclidean invariants, and attempt a direct solution of the structural differential equations of Gauss and Codazzi.
+
+Another way is to factor the direct determination of the surface up to isometry into the steps:
+\begin{enumerate}
+\itemsep0em
+\item{\label{detproj}Determine the surface up to projective transformation}
+\item{\label{detprojmiso}Determine the projective transformation modulo isometries achieving the final surface}
+\end{enumerate}
+
+This is a natural idea, for example, in computational visual geometry. There the principal measurements involve visual rays, which belong to projective geometry. Step (\ref{detproj}) is highly likely to be simpler than a direct determination, because projective geometry is simpler than Euclidean geometry.
+
+If step \ref{detprojmiso} turns out to be difficult, at least it will be difficult in a very different way from the original problem. It is a finite-dimensional problem which could perhaps be resolved by consideration of a finite number of distances or Gaussian curvatures.
+
+This factorization has practical numerical significance. Discrete methods in general struggle to handle derivatives. It is therefore desirable to confine the parts of an algorithm requiring derivatives to steps which are as simple as possible, as in the factorization suggested.
+
+The results of this paper suggest a way to perform step \ref{detproj}:
+
+\begin{itemize}
+\itemsep0em
+\item{Choose coordinates on the surface and a section of the tautological line bundle adapted to the problem at hand.}
+\item{Devise a procedure to measure numerically the coefficients of the connection $\nabla$ on the bundle $E$.}
+\item{Enforce the integrability condition $F_\nabla=0$ by some perturbative integration scheme.}
+\item{Solve the equation $\nabla s =0$, e.g. by Fourier analysis in case of periodic coordinates, or some other numerical methods.}
+\end{itemize}
+
+
+
+
+% The above is essentially the same construction, in the smooth category. We map $M\rightarrow \P\Gamma^{*}$ by sending $m$ to the equivalence class of the linear form on $\Gamma$ vanishing on all of the functions $\gamma\in \Gamma$ which vanish at $m$, $\gamma(m)=0$. Then $\Gamma$ is identified with a distinguished class of smooth sections of the restriction of the line bundle $\mathcal{O}(1)$ over $\P\Gamma^{*}$ to $M$.
+
+% The way that this class is distinguished in algebraic or complex projective geometry is automatic; one considers only algebraic or holomorphic sections. 
+
+% Here the differential equation must be specified ``by hand".
+
+%We have already shown that $\II_X$ is projectively natural; in other words, the line subbundle $L\subset S^{2}T^{*}M$ calculated for $X:M\rightarrow  V$ will be the same as for any $\GL(V)$ translate of $X$. 
+
+
+
+%even for euclidean reconstruction.. by matching finite number of curvatures?
+
+
+
+%\section{Line congruences}
+
+%\subsection{Focal surfaces and nets}
+
+%\subsubsection{Flat coordinates for $G(2,4)$}
+
+%Let $a$ and $b$ denote smooth non-degenerate surfaces in $P^3$. We will use the notation $a^{*}$ for the dual surface in $P^{3*}$, and $\D a$ for the family of points of $Q:=\operatorname{Gr}(2,4)$, which represent tangent lines to $a$ along a vector field $\D$.
+
+%The surfaces $a$ and $b$ may not admit a common tangent line. But, if they do, the generic behavior is that there is a 2-parameter family of common tangent lines, whose contact points upon $a$ and $b$ induce a one-to-one correspondence. This is seen by considering points in $\operatorname{Gr}(2,4)$ of transversal intersection of the two 3-manifolds consisting of tangent lines to $a$ and to $b$.
+
+%In this case there is a common local parameterization $a,b:\R^{2}\rightarrow  \P$ such that $\D_1 a = \D_2 b$, where $\D_1$ and $\D_2$ denote the coordinate vector fields of $\R^{2}$. (We suppress notation for the pushforward).
+
+%\definition Simultaneously parameterized surfaces $(a,b)$ are called \emph{bitangent along $(\D_1,\D_2)$} if $\D_1 a = \D_2 b$.
+
+%\begin{proposition} \label{bitangentequations}Suppose that $a,b:\R^{2}%\rightarrow  \P$ are bitangent along $(\D_1,\D_2)$. Then
+
+%\[ \II_b(\D_1 b) = \D_2 b = \D_1 a = \II_a(\D_2 a) \]
+
+%That is, $\D_1$ and $\D_2$ are $\II$-orthogonal both on $a$ and on $b$.
+
+%\end{proposition}
+%\begin{proof} Pick one of the leaves of the vector field $\D_1$ in the parameter space. The restriction of $\D_1 a$ to this leaf is a tangent developable with edge of regression lying on $a$. Since $\D_1 a = \D_2 b$, this developable is tangent to $b$ along the curve where it meets $b$; its tangent planes there are given by $b^{*}$. Also, being a developable surface, the lines $\D_2 b$ comprising it are the envelope of the tangent planes $b^{*}$ along $\D_1$. That is,
+
+%\[ (\D_1 b^{*})^{*} = \D_2 b \]
+
+%In the present notation, Proposition X means that $\II_s(\D s) = (\D s^{*})^{*}$ for a tangent direction $\D$ on a surface $s$, so that
+
+%\[ \II_b(\D_1 b) = \D_2 b \]
+
+%Similarly, $\II_a(\D_2 a) = \D_1 a $.
+
+%Equivalently, the following system of 3 equations is satisfied:
+
+%\[ \II_b(\D_1 b) = \D_1 a = \D_2 b = \II_a(\D_2 a) \]
+
+%\end{proof}
+
+%\begin{proposition} The pair $(a,b)$ are bitangent along $(\D_1,\D_2)$ if and only if
+
+%\begin{itemize}
+%\itemsep0em 
+%\item{$(b^*,a^*)$ are bitangent along $(\D_1,\D_2)$, or equivalently }
+%\item{$(a^*,b^*)$ are bitangent along $(\D_2,\D_1)$.}
+%\end{itemize}
+
+%That is, projective duality can be regarded as either switching the roles of $a$ and $b$, or switching the roles of $\D_1$ and $\D_2$, but not both simultaneously.
+%\end{proposition}
+%\begin{proof} This follows from $**=1$. For typographical convenience set $A=a^*$ and $B=b^*$:
+
+%\[\begin{matrix} (\D_1 b^{*})^{*} &=& \D_1 a &=& \D_2 b &=& (\D_2 a^{*})^{*}\\
+% (\D_1 B)^{*} &=& \D_1 A^{*} &=& \D_2 B^{*} &=& (\D_2 A)^{*} \\
+% \D_1 B &=& (\D_1 A^{*})^{*} &=& (\D_2 B^{*})^{*} &=& \D_2 A \\
+% (\D_1 A^{*})^{*} &=& \D_1 B &=& \D_2 A &=& (\D_2 B^{*})^{*} \end{matrix}\]
+
+%\end{proof}
+
+%\subsection{The multi-contact system of $\operatorname{Gr}_2(TQ)$}
+
+%For bitangent $(a,b)$, the two families of developables are described by the two families of complete flags $(a,l,B)$ and $(b,l,A)$ satisfying
+
+%\begin{align}
+%\begin{matrix}\label{bitangentequationsUnraveled}
+% l & = & \D_1 a &=& (\D_2 A)^{*} \\
+%   & = & \D_2 b &=& (\D_1 B)^{*} 
+%  \end{matrix}
+%  \end{align}
+
+%where $A:=a^{*}, B:=b^{*}$.
+
+%\begin{proposition} Regard two complete flags $N_1=(a,l,B)$ and $N_2=(b,l,A)$, parameterized by a surface $S$, as null-directions in $Q$ along $l$. Suppose that they are linearly independent. Then the span of $\{N_1,N_2\}$ is the tangent plane of $l$ in $Q$ if and only if the system of equations (\ref{bitangentequationsUnraveled}) is satisfied for some diffeomorphism $S\cong \R^{2}$ under which $N_1\equiv \D_1$ and $N_2\equiv \D_2$.
+%\end{proposition}
+
+%We interpret this proposition as follows. If $(l,N)$ describes a surface in $\operatorname{Gr}_2(TQ)$ such that the tangent 2-planes $N$ in $Q$ along $l$ belong to the open set of planes meeting the null cone generically, $(l,N)$ is an integral surface for the canonical multi-contact structure if and only if $N=\operatorname{span}\{N_1,N_2\}$ describes the focal net of the focal surfaces of $l$.
+
+%\subsection{Classification of integral surfaces}
+%\subsection{Global features of bitangent congruences}
+%\subsection{Examples}
+
+
+%\subsection{Differential Desargues theorem}
+
+%\begin{theorem} (Desargues) Let $p_1,p_2,p_3$ and $q_1,q_2,q_3$ be two triangles in 3-dimensional projective space (over any field?), all points distinct. Then the lines $p_1q_1,p_2q_2,p_3q_3$ joining corresponding vertices of the triangles are coincident at some point $c$ if and only if the intersections of corresponding sides $p_1p_2\cap q_1q_2,p_1p_3\cap q_1q_3,p_2p_3\cap q_2q_3$ are all non-empty and all lie upon some line $l$.
+%\end{theorem}
+
+%To state and prove an infinitesimal consequence, we need the following definition and proposition.
+
+%\begin{definition} A path $\gamma$ in a projective space is said to be directed by another path $c$ if the tangent line of $\gamma$ contains $c$ at each moment.
+%\end{definition}
+
+%\begin{proposition}
+%A ruled surface described as $pq$ for two paths $p$ and $q$ is developable if and only if $p$ and $q$ are simultaneously directed by some path.
+%\end{proposition}
+%\begin{proof} By definition the paths $p,q$ are simultaneously directed when their tangent lines intersect. The condition is equivalent to
+
+%\[ p\wedge p' \wedge q \wedge q' = 0 \]
+
+%The condition that $pq$ is developable is
+
+%\begin{align*}
+% 0 &= \left[(p\wedge q)'\right]^{\wedge 2} \\
+% & = (p'\wedge q + p \wedge q')^{\wedge 2} \\
+% & = 2 p'\wedge q \wedge p \wedge q'
+%\end{align*}
+
+%\end{proof}
+
+%Notice that this proposition is already a kind of infinitesimal Desargues theorem, for segments rather than triangles.
+
+%\begin{proposition} (Differential Desargues) Let triangle $p_1,p_2,p_3$ in the 3-dimensional real projective space depend upon 1 time parameter $t$, and suppose that the plane of the triangle moves (i.e. the corresponding path in the dual projective space is non-degenerate). Then the ruled surfaces $p_1p_2,p_1p_3,p_2p_3$ are all developable if and only if the paths $p_1,p_2,p_3$ are simultaneously directed by some moving point $c$.
+%\end{proposition}
+%\begin{proof} Suppose that these 3 paths are simultaneously directed. Then, in particular, they are pairwise simultaneously directed. By the proposition, the corresponding ruled surfaces are developable.
+
+%Now suppose that the 3 ruled surfaces are developable. The corresponding pairs of paths are simultaneously directed, and we can analyze cases to show that the 3 paths directing these 3 pairs are all equal. At each moment, if the 3 directing paths have distinct values, they determine a plane containing both lines of both pairs. This implies that the plane of the triangle is stationary to first-order, contradicting the assumption.
+
+%Suppose instead that 2 of the directing paths are equal and 1 is distinct from this pair. Then the line joining them contains $p_1,p_2,p_3$ at this moment. Therefore $p_1,p_2,p_3$ cannot comprise a triangle.
+
+%The only remaining possibility is that all directing paths are equal.
+%\end{proof}
+
+%I lament that I did not find a direct proof by means of a limit of the application of the Desargues theorem to certain triangle pairs. The difficulty in doing so is probably a consequence of the fact that the edge of regression of a developable ruled surface is not the topological envelope of its ruling.
+
+%Although the following fact comprised part of the proof of the above theorem, technically we can record it as a corollary. 
+
+%\begin{corollary} The vertex paths of triangle $p_1,p_2,p_3$ are simultaneously directed by some path if and only if these vertex paths are pairwise simultaneously directed.
+%\end{corollary}
+%\begin{proof} The latter condition implies that all 3 ruled surfaces are developable, which implies the former condition by the theorem.
+%\end{proof}
+
+%Note that the envelope of the family of planes of the triangle is a ruled surface on which the edges of regression of $p_1p_2,p_1p_3,p_2p_3$ must lie, if they exist, just like the intersection points in the original Desaurgues theorem.
+
+\bibliographystyle{alpha}
+\bibliography{sep22.bib}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
