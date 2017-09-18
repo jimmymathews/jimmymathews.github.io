@@ -1,0 +1,33 @@
+Rendering a cube in perspective
+
+Given:
+-the center of view C
+-the closest vertex V
+-one edge coming out of V and ending on a vertex W
+-the horizon line L of one of the planes of the cube containing this edge
+-the focal distance d (the distance from your eye to the plane of projection; this can be a segment in the picture whose length is the focal distance)
+
+1. Using C and d, mark the zenith Z of L along the perpendicular to L through C.
+2. Mark P, the intersection of L and the line VW.
+3. Draw the segment WZ.
+4. Draw the segment VZ.
+5. Draw the segment PZ.
+6. Draw the perpendicular line to PZ through C.
+7. Mark Q, its intersection with L.
+8. Draw the segment WQ.
+9. Draw the segment VQ.
+10.Draw a perpendicular to L through C.
+11.Mark a point on this perpendicular that casts a right (90 degree) angle to P and Q.
+12.Draw this angle's bisector (a ray dividing it into two 45 degree angles).
+13.Mark D, the bisector's intersection with PQ.
+14.Draw the segment DV.
+15.Mark A, the intersection of DV and QW.
+16.Draw the line PA.
+17.Mark B, the intersection of PA with QV.
+
+Steps 18-25 are the same as steps 10-17, with L (which is PQ) replaced with QZ (and VW replaced with VB).  Actually, these steps might be easier to do without labelling them.
+
+26.Draw the line from P to the last marked vertex (the "second" B).
+27.Mark E, its intersection with WZ.
+
+The cube has visible vertices V, W, A, B, the "second" A, the "second" B, and E.
