@@ -1,93 +1,388 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Jimmy Mathews</title>
+<meta charset="utf-8"/>
+<title>Jimmy Mathews -- personal webpage</title>
+<style>
+body {
+    font-family: sans-serif;
+    font-size: 0.85em;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    border-bottom: 1px dotted #0D0000;
+}
+
+a.imganchor{
+    border: 1px dotted transparent;
+}
+
+a.imganchor img{
+    border: 1px dotted transparent;
+}
+
+a.imganchor img:hover {
+    border: 1px dotted #0D0000;    
+}
+
+a.papertitle {
+    font-style: italic;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+img.free {
+    margin: 0 auto;
+    display: block;
+}
+
+div.banner {
+    margin: 0 auto;    
+}
+
+div.bigcontainer {
+    display: flex;
+    flex-flow: column;
+}
+
+div.navbar {
+    cursor: default;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    user-select: none; 
+}
+
+div.tabheader {
+    cursor: default;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 2px;
+    display: inline-block;
+    font-size: 1.1em;
+}
+
+div.tabheader:hover {
+    border-bottom: 3px solid #d1d1d1;
+}
+
+div.selectedsection {
+    border-bottom: 3px solid #456896;
+}
+
+div.selectedsection:hover {
+    border-bottom: 3px solid #456896;
+}
+
+div.section {
+    margin: 0 auto;
+    flex-grow: 1;
+}
+
+div.sectioncontainer {
+    margin: 0 auto;
+    vertical-align: top;
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+/*    --processed: max(45vh, 45vw);
+    width: calc( 55vw + var(--processed) - 45vw);
+*/
+    min-width: 400px;
+    width: 65vw;
+    max-width: 700px;
+}
+
+ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+p {
+    text-indent: 2em;
+}
+
+p.centerline {
+    text-indent: 0em;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+}
+
+table {
+    /*--processed: max(65vh, 65vw);*/
+    /*width: calc(35vw + var(--processed) - 65vw);*/
+/*    --processed2: min(400px, 35vw);
+    --processed3: min( calc(var(--processed2)), 1500px);*/
+    /*width: calc( var(--processed3) );*/
+/*    min-width: 400px;
+    width: 65vw;
+    max-width: 700px;*/
+    margin:  0 auto;
+}
+
+table.sectionitems tr td {
+  vertical-align: top;
+  padding: 8px;
+}
+
+table.singleline tr td{
+  vertical-align: bottom;    
+  padding: 8px;
+}
+
+table.singleline tr td.key {
+    /*padding:  0px;*/
+    font-weight: bold;
+    text-align: right;
+}
+
+</style>
+<script>
+function clear_visibilities_except(id_string) {
+    for (button of get_navigation_buttons()) {
+        let section_title = button.textContent;
+        if (section_title != id_string) {
+            var section = document.getElementById(section_title);
+            section.style.display = "none";
+            button.classList.remove("selectedsection");
+        }
+    }
+}
+
+function section_show(id_string) {
+    clear_visibilities_except(id_string)
+    var section = document.getElementById(id_string);
+    if (section.style.display === "none")
+    {
+        section.style.display = "block";
+    }
+}
+
+function get_navigation_buttons() {
+    var tab_headers = document.getElementsByClassName("tabheader")
+    const buttons = [];
+    var count = 0;
+    for (i in tab_headers) {
+        element = tab_headers[i];
+        if (element.nodeName == "DIV") {
+            buttons[count] = element;
+            count = count + 1;
+        }
+    }
+    return buttons;
+}
+
+function associate_navigation_actions(){
+    for (button of get_navigation_buttons()) {
+        let section_title = button.textContent
+        button.onclick = function(){
+            console.log(this.classList);
+            this.classList.add("selectedsection");
+            console.log(this.classList);
+            section_show(section_title);
+        }
+    }
+}
+
+function initialize_page_js() {
+    associate_navigation_actions()
+}
+</script>
 </head>
-<body>
-</br>
-<IMG SRC="images/thumb.png" ALT="png">
-</br>
 
-<p>Jimmy Mathews</br>
-<a href="mailto:mathewj2@mskcc.org">mathewj2@mskcc.org</a></br>
-<a href="mailto:jimmy@jmath.read-books.org">jimmy@jmath.read-books.org</a>
+<body onload="initialize_page_js()">
+<div class="bigcontainer">
+
+<div class="banner">
+<img class="free" src="images/gross_alien_sprouts_cropped.jpg" alt="jpg">
+</div>
+
+<div class="navbar">
+    <div class="tabheader selectedsection">About</div>
+    <div class="tabheader">Research</div>
+    <div class="tabheader">Teaching</div>
+    <div class="tabheader">Pictures</div>
+    <div class="tabheader">Links</div>
+</div>
+
+<div class="sectioncontainer">
+
+<div class="section" id="About">
+
+<p class="centerline">Jimmy Mathews<br>
+<a href="mailto:mathewj2@mskcc.org">mathewj2@mskcc.org</a><br>
+<a href="mailto:jimmy@jmath.read-books.org">jimmy@jmath.read-books.org</a></p>
+
+<div>
+<img class="free" src="images/halloween2.png" alt="png">
+</div>
+
+<p>I am a researcher in the <a target="_blank" href="https://nadeemlab.org/">Nadeem Lab</a> at <a target="_blank" href="https://www.mskcc.org/">Memorial Sloan Kettering Cancer Center</a>. I was previously a scientific data engineer at the <a target="_blank" href="https://alleninstitute.org/">Allen Institute</a>, a postdoctoral researcher in the <a target="_blank" href="https://www.mskcc.org/research-areas/labs/joseph-deasy">Deasy Lab</a>, and before that a PhD student in the mathematics department at Stony Brook University.
 </p>
 
-<p>I am currently a postdoctoral researcher at Memorial Sloan Kettering Cancer Center. Previously, I was a PhD student in the mathematics department at Stony Brook University. I also support communism, luddism, and anarchism. That is, the freedom to work for the community and not for capital, with technological tools in the hands of users, despite the state's unwavering protection of the ownership class' passive enjoyment of the fruits of the people's labor.</p>
-
-<p>
-<h4>Papers</h4>
-
-2019. <a href=https://rdcu.be/bWxR4>Robust and interpretable PAM50 reclassification exhibits survival advantage for myoepithelial and immune phenotypes</a></br>
-
-2019. <a href="https://arxiv.org/abs/1901.06584">Isotropic and Coisotropic Subvarieties of Grassmannians</a> (joint with Kathlen Kohn)</br>
-2018. <a href="https://arxiv.org/abs/1811.06221">A Schur transform for spatial stochastic processes</a></br>
-2018. <a href="https://www.biorxiv.org/content/10.1101/328054v1">Molecular phenotyping using networks, diffusion, and topology: soft tissue sarcoma</a> (joint with Maryam Pouryahya, Caroline Moosemueller, Ioannis Kevrekidis, Joseph Deasy, and Allen Tannenbaum)</br>
-2018. <a href="https://www.ncbi.nlm.nih.gov/pubmed/29686393">Characterizing Cancer Drug Response and Biological Correlates: A Geometric Network Approach.</a> (joint with Maryam Pouryahya, Jung Hun Oh, Joseph Deasy, and Allen Tannenbaum)</br>
-2017. My PhD thesis, <a href="papers/MathewsThesis_2017.pdf">Curve jets, submanifolds families, and envelopes</a></br>
-2016. <a href="https://arxiv.org/abs/1610.04294">Multi-focal tensors as invariant differential forms</a>
+<p>I support communism, luddism, and anarchism. That is, the freedom to work for the community and not for capital, with technological tools in the hands of users, despite the state's unwavering protection of the ownership class' passive enjoyment of the fruits of the people's labor.
 </p>
 
-<p>
-<h4>Programming</h4>
-<a href="http://www.github.com/jimmymathews/gman">gman</a>, a general-purpose text-mode graph navigation and annotation tool (I'm also working on a fork of gman that is an OWL ontology explorer)</br>
-<a href="http://www.math.uiuc.edu/Macaulay2/">Macaulay2</a> <a href="code/UmbralCalculus4d.m2">program</a> to calculate 4d tensor invariants using the <a href="illustration.html">umbral calculus</a></br>
-<a href="neat_math_graphics/perspectiveCubeTool.ggb">Perspective cube drawing</a> in geogebra, and <a href="notes/cube.txt">a note explaining how to draw cubes</a>, drawn from George Francis' <a href="http://www.springer.com/us/book/9780387345420">A Topological Picturebook</a></br>
-Matt Genkin's <a href="http://github.com/mgenkin/geodesics_on_pants">project</a> to see geodesic configurations on hyperbolic surfaces
-</p>
+<h3>Favorites</h3>
+
+<table class="singleline">
+<tr><td class="key">Actor:</td><td><a target="_blank" href="https://www.imdb.com/name/nm0000353/">Willem Dafoe</a>, <a target="_blank" href="https://www.imdb.com/name/nm0000114/">Steve Buscemi</a></td></tr>
+<tr><td class="key">Comedian:</td><td><a target="_blank" href="https://alanresnick.info/">Alan Resnick</a></td></tr>
+<tr><td class="key">Game designer:</td><td><a target="_blank" href="https://nifflas.fandom.com/wiki/List_of_Nifflas_games">Nifflas <img src="images/knytt_icon.png" alt=""></a></td></tr>
+<tr><td class="key">Jimmy:</td><td><a target="_blank" href="https://en.wikipedia.org/wiki/I_Am_Not_Your_Negro">Baldwin</a></td></tr>
+<tr><td class="key">Movie:</td><td><a target="_blank" href="https://www.imdb.com/title/tt0117561/">Schizopolis</a>, <a target="_blank" href="https://www.imdb.com/title/tt2866360/">Coherence</a></td></tr>
+<tr><td class="key">Algebraic variety:</td><td><a target="_blank" href="https://en.wikipedia.org/wiki/Line_complex">G(2,4)</a></td></tr>
+<tr><td class="key">Lie algebra:</td><td><a target="_blank" href="https://en.wikipedia.org/wiki/3D_rotation_group#Lie_algebra">so(3)</a></td></tr>
+<tr><td class="key">Design pattern:</td><td><a target="_blank" href="https://en.wikipedia.org/wiki/Flyweight_pattern">Flyweight</a></td>
+<tr><td class="key">Non-human primate:</td><td><a target="_blank" href="https://en.wikipedia.org/wiki/Pan_(genus)">Pan</a></td></tr>
+<tr><td class="key">Prehistoric human:</td><td><a target="_blank" href="https://en.wikipedia.org/wiki/Homo_habilis">Homo habilis</a></td></tr>
+</table>
+
+</div>
+
+<div class="section" id="Research" style="display: none;">
+
+<h3>Publications and preprints</h3>
+
+<table class="sectionitems">
+<tr><td>2020</td>
+<td><a target="_blank" href="https://doi.org/10.1073/pnas.2002179117" class="papertitle">Functional network analysis reveals an immune tolerance mechanism in cancer</a><br>Joint with <a target="_blank" href="https://scholar.google.com/citations?user=F-RwTMgAAAAJ">Saad Nadeem</a>, <a target="_blank" href="https://scholar.google.com/citations?user=2HqjMYwAAAAJ">Maryam Pouryahya</a>, <a target="_blank" href="https://scholar.google.com/citations?user=pBzN8vMAAAAJ">Zehor Belkhatir</a>, <a target="_blank" href="https://www.mskcc.org/research-areas/labs/joseph-deasy">Joseph O. Deasy</a>, <a target="_blank" href="https://www.ias.edu/scholars/levine">Arnold J. Levine</a>, <a target="_blank" href="https://scholar.google.com/citations?user=w0Vl_lsAAAAJ">Allen Tannenbaum</a></td></tr>
+<tr><td>2019</td>
+<td><a target="_blank" href="https://rdcu.be/bWxR4" class="papertitle">Robust and interpretable PAM50 reclassification exhibits survival advantage for myoepithelial and immune phenotypes</a><br>Joint with <a target="_blank" href="https://scholar.google.com/citations?user=F-RwTMgAAAAJ">Saad Nadeem</a>, <a target="_blank" href="https://www.ias.edu/scholars/levine">Arnold J. Levine</a>, <a target="_blank" href="https://scholar.google.com/citations?user=2HqjMYwAAAAJ">Maryam Pouryahya</a>, <a target="_blank" href="https://www.mskcc.org/research-areas/labs/joseph-deasy">Joseph O. Deasy</a>, and <a target="_blank" href="https://scholar.google.com/citations?user=w0Vl_lsAAAAJ">Allen Tannenbaum</a></td></tr>
+<tr><td>2019</td>
+<td><a target="_blank" href="https://www.sciencedirect.com/science/article/abs/pii/S000187082030520X" class="papertitle">Isotropic and Coisotropic Subvarieties of Grassmannians</a><br>Primary author <a target="_blank" href="https://kathlenkohn.github.io/">Kathlen Kohn</a></td></tr>
+<tr><td>2018</td>
+<td><a target="_blank" href="https://arxiv.org/abs/1811.06221" class="papertitle">A Schur transform for spatial stochastic processes</a></td></tr>
+<td>2018</td>
+<td><a target="_blank" href="https://doi.org/10.1038/s41598-019-50300-2" class="papertitle">Molecular phenotyping using networks, diffusion, and topology: soft tissue sarcoma</a><br>Joint with <a target="_blank" href="https://scholar.google.com/citations?user=2HqjMYwAAAAJ">Maryam Pouryahya</a>, <a target="_blank" href="https://scholar.google.com/citations?user=DIYjPzgAAAAJ">Caroline Moosmüller</a>, <a target="_blank" href="https://scholar.google.com/citations?user=N4NN1xwAAAAJ">Ioannis Kevrekidis</a>, <a target="_blank" href="https://www.mskcc.org/research-areas/labs/joseph-deasy">Joseph O. Deasy</a>, and <a target="_blank" href="https://scholar.google.com/citations?user=w0Vl_lsAAAAJ">Allen Tannenbaum</a></td></tr>
+<tr><td>2017</td>
+<td><a target="_blank" href="papers/MathewsThesis_2017.pdf" class="papertitle">Curve jets, submanifolds families, and envelopes</a><br>My PhD thesis.</td></tr>
+<tr><td>2016</td>
+<td><a target="_blank" href="https://arxiv.org/abs/1610.04294" class="papertitle">Multi-focal tensors as invariant differential forms</a></td></tr>
+</table>
+
+<h3>Software</h3>
+
+<table class="sectionitems">
+<tr><td><a target="_blank" href="https://github.com/nadeemlab/SPT">SPT</a></td><td>Spatial Profiling Toolbox for spatial characterization of the tumor microenvironment in multiplex images.</td></tr>
+<tr><td><a target="_blank" href="https://pypi.org/project/coincidencetest/">coincidencetest</a></td><td>A library and supplemental tools implementing an exact test for co-occurrence of multiple binary features.</td></tr>
+<tr><td><a target="_blank" href="http://www.github.com/jimmymathews/gman">gman</a></td><td>A general-purpose text-mode graph navigation and annotation tool.</td></tr>
+<tr><td><a href="code/UmbralCalculus4d.m2">4D tensor invariants</a></td><td>A <a target="_blank" href="http://www.math.uiuc.edu/Macaulay2/">Macaulay2</a> program to calculate 4d tensor invariants using the <a href="illustration.html">umbral calculus</a> as described in <a target="_blank" href="https://www.google.com/books/edition/Invariant_Theory_and_Superalgebras/DWYaF9S0ZsgC?hl=en">Grosshans, Rota, and Stein</a>.</td></tr>
+<tr><td><a href="neat_math_graphics/perspectiveCubeTool.ggb">perspective cube tool</a></td><td><a target="_blank" href="https://www.geogebra.org/">Geogebra</a> tool for constructing cubes in perspective, and <a href="notes/cube.txt">a note</a> explaining how to draw cubes on paper. Drawn from George Francis' <a target="_blank" href="http://www.springer.com/us/book/9780387345420">A Topological Picturebook</a>.</td></tr>
+</table>
+
+<h3>Notes</h3>
+
+<ul>
+<li>Summary notes of Ehresmann and Vanbremeersch <i>Memory Evolutive Systems</i> <a target="_blank" href="https://socialmath.github.io/mes/ReviewSummary_EhresmannVanbremeersch_MES_PartA.html">Part A</a> and <a target="_blank" href="https://socialmath.github.io/mes/ReviewSummary_EhresmannVanbremeersch_MES_PartB.html">Part B</a>.</li>
+</ul>
+
+<h3>Talks</h3>
+
+<ul>
+<li>November 2019. Wasserstein and Fisher-Rao from de Rham and Poincare. BMCC Mathematics Department Colloquium.</li>
+<li>September 2017. <a href="talks/handout.pdf">Handout</a> about curve jets, from a talk at TU Berlin</li>
+<li>July 2017. <a href="talks/SIAM_AG_AV_2017.pdf">Multi-focal tensors as invariant differential forms, and envelopes of line congruences</a> (SIAM mini-symposium on algebraic vision, at Atlanta, Georgia)</li>
+</ul>
+
+</div>
+
+<div class="section" id="Teaching" style="display: none;">
 
 <p>
-<h4>Notes</h4>
-<a href="https://socialmath.github.io/mes/ReviewSummary_EhresmannVanbremeersch_MES_PartA.html">Summary notes of Ehresmann and Vanbremeersch <i>Memory Evolutive Systems</i></a></br>
-</p>
-
-<p>
-<h4>Teaching</h4>
 <a href="courses/mat200/index.html">MAT 200</a></br>
 <a href="courses/mat211/index.html">MAT 211</a></br>
 <a href="courses/mat312/index.html">MAT 312/AMS 351</a></br>
-<a href="courses/mat514/index.html">MAT 514</a></p>
+<a href="courses/mat514/index.html">MAT 514</a>
 </p>
 
-<p>
-<h4>Talks</h4>
-November 2019. Wasserstein and Fisher-Rao from de Rham and Poincare. BMCC Mathematics Department Colloquium. </br>
-September 2017. <a href="talks/handout.pdf">Handout</a> about curve jets, from a talk at TU Berlin</br>
-July 2017. <a href="talks/SIAM_AG_AV_2017.pdf">Multi-focal tensors as invariant differential forms, and envelopes of line congruences</a> (SIAM mini-symposium on algebraic vision, at Atlanta, Georgia)</br>
+</div>
+
+<div class="section" id="Pictures" style="display: none;">
+
+<ul>
+<li><a href="neat_graphics.html">Math graphics</a></li>
+</ul>
+
+<p class="centerline">
+An interesting linkage
+<br>
+<a href="images/spinny2.gif" class="imganchor"><img src="images/spinny3.gif" alt="linkage"></a>
 </p>
 
-<p>
-<h4>Images and videos</h4>
-<a href="neat_graphics.html">Math graphics</a></br>
-<a href="images/ecar.png">Solar car</a></br>
-<a href="images/chess.jpg">Chess</a></br>
-<a href="images/box.jpg">Box house</a></br>
+<table class="sectionitems">
+<tr>
+<td>
+<p class="centerline">
+Solar car
+<br>
+<a href="images/ecar.png" class="imganchor"><img src="images/ecar2.png" alt="ecar"></a>
 </p>
-
-<p>
-<h4>Unaffiliated links:</h4>
-<a target="_blank" href="http://www.link.cs.cmu.edu/link/">CMU Link Grammar</a>
-&nbsp;&nbsp; <a target="_blank" href="http://www.cis.upenn.edu/~xtag/">XTAG project</a>
-&nbsp;&nbsp; <a target="_blank" href="http://attempto.ifi.uzh.ch/site/">Attempto Project</a>
-</br>
- <a target="_blank" href="https://intelligence.org/">Machine Intelligence Research Institute</a>
-&nbsp;&nbsp; <a target="_blank" href="http://www.opencog.org">OpenCog Foundation</a>
-&nbsp;&nbsp <a target="_blank" href=https://openai.com/about/">OpenAI</a>
-</br>
- <a target="_blank" href="http://www.fsf.org/">Free Software Foundation </a>
-&nbsp;&nbsp <a target="_blank" href="https://www.eff.org/">Electronic Frontier Foundation</a>
-&nbsp;&nbsp <a target="_blank" href="https://dgsociety.org/about">Digital Government Society </a>
-&nbsp;&nbsp <a target="_blank" href="https://cdt.org/about/">Center for Democracy and Technology</a>
-&nbsp;&nbsp <a target="_blank" href="https://www.newamerica.org/">Open Technology Institute</a>
-</br>
- <a target="_blank" href="http://www.participatorybudgeting.org/about-participatory-budgeting/what-is-pb/">Participatory Budgetary Project</a>
-&nbsp;&nbsp <a target="_blank" href="http://www.publicbankinginstitute.org/">Public Banking Institute</a>
-</br>
-
-<a target="_blank" href="https://stallman.org/">Richard Stallman</a>
-
+</td>
+<td>
+<p class="centerline">
+Chess
+<br>
+<a href="images/chess.jpg" class="imganchor"><img src="images/chess2.jpg" alt="chess"></a>
 </p>
-</br></br>
+</td>
+</tr>
+<tr>
+<td>
+<p class="centerline">
+Box house
+<br>
+<a href="images/box.jpg" class="imganchor"><img src="images/box2.jpg" alt="box"></a>
+</p>
+</td>
+<td>
+<p class="centerline">
+Box house 2.0
+<br>
+<a href="images/cabin.jpg" class="imganchor"><img src="images/cabin2.jpg" alt="cabin"></a>
+</p>
+</td>
+</tr>
+</table>
+</div>
+
+<div class="section" id="Links" style="display: none;">
+
+<ul>
+<li><a target="_blank" href="https://osmosianplainenglishprogramming.blog/">Plain English Programming Language</li>
+<li><a target="_blank" href="http://www.link.cs.cmu.edu/link/">CMU Link Grammar</a></li>
+<li><a target="_blank" href="http://www.cis.upenn.edu/~xtag/">XTAG project</a></li>
+<li><a target="_blank" href="http://attempto.ifi.uzh.ch/site/">Attempto Project</a></li>
+<li><a target="_blank" href="https://intelligence.org/">Machine Intelligence Research Institute</a></li>
+<li><a target="_blank" href="http://www.opencog.org">OpenCog Foundation</a></li>
+<li><a target="_blank" href="https://openai.com/about/">OpenAI</a></li>
+<li><a target="_blank" href="http://www.fsf.org/">Free Software Foundation </a></li>
+<li><a target="_blank" href="https://www.eff.org/">Electronic Frontier Foundation</a></li>
+<li><a target="_blank" href="https://dgsociety.org/about">Digital Government Society </a></li>
+<li><a target="_blank" href="https://cdt.org/about/">Center for Democracy and Technology</a></li>
+<li><a target="_blank" href="https://www.newamerica.org/">Open Technology Institute</a></li>
+<li><a target="_blank" href="http://www.participatorybudgeting.org/about-participatory-budgeting/what-is-pb/">Participatory Budgetary Project</a></li>
+<li><a target="_blank" href="http://www.publicbankinginstitute.org/">Public Banking Institute</a></li>
+<li><a target="_blank" href="https://stallman.org/">Richard Stallman</a></li>
+</ul>
+
+</div>
+
+</div>
+
+</div>
+<br><br><br><br>
 
 </body>
 </html>
