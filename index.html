@@ -38,6 +38,11 @@ h1, h2, h3 {
     text-align: center;
 }
 
+h3 {
+    padding-top: 15px;
+    padding-bottom: 0px;
+}
+
 img.free {
     margin: 0 auto;
     display: block;
@@ -93,13 +98,12 @@ div.sectioncontainer {
     display: flex;
     flex-flow: column;
     height: 100%;
-/*    --processed: max(45vh, 45vw);
-    width: calc( 55vw + var(--processed) - 45vw);
-*/
     min-width: 400px;
     width: 65vw;
     max-width: 700px;
 }
+
+
 
 ul {
   margin-top: 0;
@@ -116,7 +120,7 @@ p.centerline {
 }
 
 ul {
-    list-style-type: none;
+    list-style-type: square;
 }
 
 table {
@@ -137,7 +141,6 @@ table.singleline tr td.key {
     font-weight: bold;
     text-align: right;
 }
-
 </style>
 <script>
 function clear_visibilities_except(id_string) {
@@ -227,7 +230,8 @@ function initialize_page_js() {
 <tr><td class="key">Actor:</td><td><a target="_blank" href="https://www.imdb.com/name/nm0000353/">Willem Dafoe</a>, <a target="_blank" href="https://www.imdb.com/name/nm0000114/">Steve Buscemi</a></td></tr>
 <tr><td class="key">Comedian:</td><td><a target="_blank" href="https://alanresnick.info/">Alan Resnick</a></td></tr>
 <tr><td class="key">Game designer:</td><td><a target="_blank" href="https://nifflas.fandom.com/wiki/List_of_Nifflas_games">Nifflas <img src="images/knytt_icon.png" alt=""></a></td></tr>
-<tr><td class="key">Capitalism supporter:</td><td><a target="_blank" href="https://slatestarcodex.com/">Scott Alexander</a></td></tr>
+<tr><td class="key">Computer game:</td><td><a target="_blank" href="">ZZT <img src="images/zzt_icon.jpg" alt="img"></a><br>From Anna Anthropy's book <i><a target="_blank" href="https://bossfightbooks.com/products/zzt-by-anna-anthropy">ZZT</a></i>: "Not everyone has played ZZT, but everyone who played it became a game designer."</td></tr>
+<tr><td class="key">Capitalism apologist:</td><td><a target="_blank" href="https://slatestarcodex.com/">Scott Alexander</a></td></tr>
 <tr><td class="key">Jimmy:</td><td><a target="_blank" href="https://en.wikipedia.org/wiki/I_Am_Not_Your_Negro">Baldwin</a></td></tr>
 <tr><td class="key">Movie:</td><td><a target="_blank" href="https://www.imdb.com/title/tt0117561/">Schizopolis</a>, <a target="_blank" href="https://www.imdb.com/title/tt2866360/">Coherence</a></td></tr>
 <tr><td class="key">19th century mathematician:</td><td><a target="_blank" href="https://en.wikipedia.org/wiki/Jean_Gaston_Darboux">Jean Gaston Darboux</a></td></tr>
@@ -243,7 +247,19 @@ function initialize_page_js() {
 
 <div class="section" id="Research" style="display: none;">
 
-<h3>Publications and preprints</h3>
+<p>
+My research interests include:
+<ul>
+<li>Systems biology and complex systems. Graphs, categories, and operads.</li>
+<li>Software design patterns and database design patterns. OWL ontology.</li>
+<li>Philosophy of biology and science.</li>
+<li>Low-dimensional geometry. Synthetic projective and differential geometry.</li>
+<li>Differential forms and geometric PDEs.</li>
+<li>Lie groups and their representations. Tensor and symmetry methods in data analysis.</li>
+</ul>
+</p>
+
+<h3>Selected publications and preprints</h3>
 
 <table class="sectionitems">
 <tr><td>2020</td>
@@ -267,10 +283,16 @@ function initialize_page_js() {
 <table class="sectionitems">
 <tr><td><a target="_blank" href="https://github.com/nadeemlab/SPT">SPT</a></td><td>Spatial Profiling Toolbox for spatial characterization of the tumor microenvironment in multiplex images.</td></tr>
 <tr><td><a target="_blank" href="https://pypi.org/project/coincidencetest/">coincidencetest</a></td><td>A library and supplemental tools implementing an exact test for co-occurrence of multiple binary features.</td></tr>
+</table>
+
+<h3>Older software</h3>
+
+<table class="sectionitems">
 <tr><td><a target="_blank" href="http://www.github.com/jimmymathews/gman">gman</a></td><td>A general-purpose text-mode graph navigation and annotation tool.</td></tr>
 <tr><td><a href="code/UmbralCalculus4d.m2">4D tensor invariants</a></td><td>A <a target="_blank" href="http://www.math.uiuc.edu/Macaulay2/">Macaulay2</a> program to calculate 4d tensor invariants using the <a href="illustration.html">umbral calculus</a> as described in <a target="_blank" href="https://www.google.com/books/edition/Invariant_Theory_and_Superalgebras/DWYaF9S0ZsgC?hl=en">Grosshans, Rota, and Stein</a>.</td></tr>
 <tr><td><a href="code/perspectiveCubeTool.ggb">perspective cube tool</a></td><td><a target="_blank" href="https://www.geogebra.org/">Geogebra</a> tool for constructing cubes in perspective, and <a href="notes/cube.txt">a note</a> explaining how to draw cubes on paper. Drawn from George Francis' <a target="_blank" href="http://www.springer.com/us/book/9780387345420">A Topological Picturebook</a>.</td></tr>
 </table>
+
 
 <h3>Notes</h3>
 
@@ -313,7 +335,7 @@ function initialize_page_js() {
 
 <table class="singleline">
 <tr><td class="key"><a class="imganchor" href="graphics/triple_resized.mp4"><img src="graphics/triple_still.png" alt="img"></a></td><td>A triple front tuck.</td></tr>
-<tr><td class="key"><a class="imganchor" href="images/tmj.png"><img src="images/tmj_thumb.png" alt="img"></a></td><td>A bony growth on the upper part of my right mandibular condyle caused by an injury during a martial arts class. CT scan at about 3 months post-injury. You also get a good view of my unerupted upper-right wisdom tooth.</td></tr>
+<tr><td class="key"><a class="imganchor" href="images/tmj.png"><img src="images/tmj_thumb.png" alt="img"></a></td><td>A bony growth on the upper part of my right mandibular condyle, caused by an injury during a martial arts class. CT scan at about 3 months post-injury. You also get a good view of my unerupted upper-right wisdom tooth.</td></tr>
 </table>
 
 <table class="sectionitems">
