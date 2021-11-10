@@ -7,7 +7,7 @@ A barebones website hosted on github pages
 
 The file [index.html](index.html) is a standalone webpage template with styling and minimal interactivity created with a few Javascript functions.
 
-Preview it by saving `index.html` to your computer, and then opening it in a browser. On a mac, this may work: `open -a Safari index.html`
+Preview it by cloning this repository and opening `index.html` in a browser. On a mac, this may work: `open -a Safari index.html`
 
 Also take a look at the text of the file itself. The 3 important parts are:
 
