@@ -24,7 +24,7 @@ Also take a look at the text of the file itself. The 3 important parts are:
 
 The body should be as close as possible to barebones HTML. This is just a bunch of text, hierarchically organized into sections (`div` elements, sometimes `span`), incorporating tables, lists, paragraphs, and headers as necessary.
 
-The style section is [CSS](https://www.w3schools.com/cssref/). The point of the CSS is to add color, size, and patterning. It accomplishes this by mentioning styling elements in the context of either specific HTML element types (like `p` or `td` or `div` ...), or in the context of your own custom-named classes of elements. In the latter case you just have to make sure to add something like `class="customclassname"` to the HTML element in the body. Writing CSS is always a matter of taking a few examples, and reworking them by searching the [W3C reference](https://www.w3schools.com/cssref/) for the correct attribute names and usage rules.
+The style section is [CSS](https://www.w3schools.com/cssref/). The point of the CSS is to add color, size, patterning, and even a little interactivity. It accomplishes this by mentioning styling elements in the context of either specific HTML element types (like `p` or `td` or `div` ...), or in the context of your own custom-named classes of elements. In the latter case you just have to make sure to add something like `class="customclassname"` to the HTML element in the body. Writing CSS is always a matter of taking a few examples, and reworking them by searching the [W3C reference](https://www.w3schools.com/cssref/) for the correct attribute names and usage rules.
 
 The script section is Javascript (JS). I have included some JS functions here to do minimal interactive section-toggling.
 
