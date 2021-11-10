@@ -37,7 +37,7 @@ It is possible you might have to fiddle with something in the "Pages" section of
 
 If you have registered a domain name by purchasing the registration service from a "registrar" (like NoIP, Namecheap, or GoDaddy), you should be able to make it point to your website hosted on github. This used to be a somewhat complicated process, but these days it should not be that hard:
 
-1. Fill out the "custom domain" text field under Github -> the repository -> Settings -> Pages.
+1. Fill out the "custom domain" text field under Github -> the repository -> Settings -> Pages. I'm actually not sure if this is needed.
 2. Log in to your account with the registrar.
 3. Locate the area for settings related to the domain you purchased.
 4. Add a CNAME record pointing your domain to `<your username>.github.io` .
