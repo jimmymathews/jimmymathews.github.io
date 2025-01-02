@@ -5,102 +5,102 @@
 <title>Jimmy Mathews -- personal webpage</title>
 <style>
 body {
-    font-family: sans-serif;
-    font-size: 0.85em;
-    margin: 0;
+  font-family: sans-serif;
+  font-size: 0.85em;
+  margin: 0;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 a:hover {
-    border-bottom: 1px dotted #0D0000;
+  border-bottom: 1px dotted #0D0000;
 }
 
 a.imganchor{
-    border: 1px dotted transparent;
+  border: 1px dotted transparent;
 }
 
 a.imganchor img{
-    border: 1px dotted transparent;
+  border: 1px dotted transparent;
 }
 
 a.imganchor img:hover {
-    border: 1px dotted #0D0000;    
+  border: 1px dotted #0D0000;    
 }
 
 a.papertitle {
-    font-style: italic;
+  font-style: italic;
 }
 
 h1, h2, h3 {
-    text-align: center;
+  text-align: center;
 }
 
 h3 {
-    padding-top: 15px;
-    padding-bottom: 0px;
+  padding-top: 15px;
+  padding-bottom: 0px;
 }
 
 img.free {
-    margin: 0 auto;
-    display: block;
+  margin: 0 auto;
+  display: block;
 }
 
 div.banner {
-    margin: 0 auto;    
+  margin: 0 auto;    
 }
 
 div.bigcontainer {
-    display: flex;
-    flex-flow: column;
+  padding-left: calc(100vw - 100%);
 }
 
 div.navbar {
-    cursor: default;
-    margin: 0 auto;
-    margin-top: 10px;
-    margin-bottom: 30px;
-    user-select: none; 
+  cursor: default;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  user-select: none; 
+  text-align: center;
 }
 
 div.tabheader {
-    cursor: default;
-    padding-top: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-bottom: 2px;
-    display: inline-block;
-    font-size: 1.1em;
+  cursor: default;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 2px;
+  display: inline-block;
+  font-size: 1.1em;
 }
 
 div.tabheader:hover {
-    border-bottom: 3px solid #d1d1d1;
+  border-bottom: 3px solid #d1d1d1;
 }
 
 div.selectedsection {
-    border-bottom: 3px solid #456896;
+  border-bottom: 3px solid #456896;
 }
 
 div.selectedsection:hover {
-    border-bottom: 3px solid #456896;
+  border-bottom: 3px solid #456896;
 }
 
 div.section {
-    margin: 0 auto;
-    flex-grow: 1;
+  margin: 0 auto;
+  flex-grow: 1;
 }
 
 div.sectioncontainer {
-    margin: 0 auto;
-    vertical-align: top;
-    display: flex;
-    flex-flow: column;
-    height: 100%;
-    min-width: 400px;
-    width: 65vw;
-    max-width: 700px;
+  margin: 0 auto;
+  vertical-align: top;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+  min-width: 400px;
+  width: 65vw;
+  max-width: 700px;
 }
 
 
@@ -111,20 +111,20 @@ ul {
 }
 
 p {
-    text-indent: 2em;
+  text-indent: 2em;
 }
 
 p.centerline {
-    text-indent: 0em;
-    text-align: center;
+  text-indent: 0em;
+  text-align: center;
 }
 
 ul {
-    list-style-type: square;
+  list-style-type: square;
 }
 
 table {
-    margin:  0 auto;
+  margin:  0 auto;
 }
 
 table.sectionitems tr td {
@@ -133,64 +133,65 @@ table.sectionitems tr td {
 }
 
 table.singleline tr td{
-  vertical-align: center;
+  vertical-align: bottom;
   padding: 8px;
+  max-width: 400px;
 }
 
 table.singleline tr td.key {
-    font-weight: bold;
-    text-align: right;
+  font-weight: bold;
+  text-align: right;
 }
 </style>
 <script>
 function clear_visibilities_except(id_string) {
-    for (button of get_navigation_buttons()) {
-        let section_title = button.textContent;
-        if (section_title != id_string) {
-            var section = document.getElementById(section_title);
-            section.style.display = "none";
-            button.classList.remove("selectedsection");
-        }
+  for (button of get_navigation_buttons()) {
+    let section_title = button.textContent;
+    if (section_title != id_string) {
+      var section = document.getElementById(section_title);
+      section.style.display = "none";
+      button.classList.remove("selectedsection");
     }
+  }
 }
 
 function section_show(id_string) {
-    clear_visibilities_except(id_string)
-    var section = document.getElementById(id_string);
-    if (section.style.display === "none")
-    {
-        section.style.display = "block";
-    }
+  clear_visibilities_except(id_string)
+  var section = document.getElementById(id_string);
+  if (section.style.display === "none")
+  {
+    section.style.display = "block";
+  }
 }
 
 function get_navigation_buttons() {
-    var tab_headers = document.getElementsByClassName("tabheader")
-    const buttons = [];
-    var count = 0;
-    for (i in tab_headers) {
-        element = tab_headers[i];
-        if (element.nodeName == "DIV") {
-            buttons[count] = element;
-            count = count + 1;
-        }
+  var tab_headers = document.getElementsByClassName("tabheader")
+  const buttons = [];
+  var count = 0;
+  for (i in tab_headers) {
+    element = tab_headers[i];
+    if (element.nodeName == "DIV") {
+      buttons[count] = element;
+      count = count + 1;
     }
-    return buttons;
+  }
+  return buttons;
 }
 
 function associate_navigation_actions(){
-    for (button of get_navigation_buttons()) {
-        let section_title = button.textContent
-        button.onclick = function(){
-            console.log(this.classList);
-            this.classList.add("selectedsection");
-            console.log(this.classList);
-            section_show(section_title);
-        }
+  for (button of get_navigation_buttons()) {
+    let section_title = button.textContent
+    button.onclick = function(){
+      console.log(this.classList);
+      this.classList.add("selectedsection");
+      console.log(this.classList);
+      section_show(section_title);
     }
+  }
 }
 
 function initialize_page_js() {
-    associate_navigation_actions()
+  associate_navigation_actions()
 }
 </script>
 </head>
@@ -199,14 +200,14 @@ function initialize_page_js() {
 <div class="bigcontainer">
 
 <div class="banner">
-<img class="free" src="images/gross_alien_sprouts_cropped.jpg" alt="jpg">
+<img class="free" src="images/gross_alien_sprouts_cropped.jpg" alt="jpg" title="Monotropa in Orange County, NY">
 </div>
 
 <div class="navbar">
-    <div class="tabheader selectedsection">About</div>
-    <div class="tabheader">Research</div>
-    <div class="tabheader">Pictures and animations</div>
-    <div class="tabheader">Links</div>
+  <div class="tabheader selectedsection">About</div>
+  <div class="tabheader">Research</div>
+  <div class="tabheader">Pictures and animations</div>
+  <div class="tabheader">Links</div>
 </div>
 
 <div class="sectioncontainer">
@@ -227,21 +228,54 @@ function initialize_page_js() {
 <h3>Favorites</h3>
 
 <table class="singleline">
-<tr><td class="key">Actor:</td><td><a target="_blank" href="https://www.imdb.com/name/nm0000353/">Willem Dafoe</a>, <a target="_blank" href="https://www.imdb.com/name/nm0000114/">Steve Buscemi</a></td></tr>
-<tr><td class="key">Comedian:</td><td><a target="_blank" href="https://alanresnick.info/">Alan Resnick</a></td></tr>
-<tr><td class="key">Game designer:</td><td><a target="_blank" href="https://nifflas.fandom.com/wiki/List_of_Nifflas_games">Nifflas <img src="images/knytt_icon.png" alt=""></a></td></tr>
-<tr><td class="key">Computer game:</td><td><a target="_blank" href="https://museumofzzt.com/">ZZT <img src="images/zzt_icon.jpg" alt="img"></a><br>From Anna Anthropy's book <i><a target="_blank" href="https://bossfightbooks.com/products/zzt-by-anna-anthropy">ZZT</a></i>: "Not everyone has played ZZT, but everyone who played it became a game designer."</td></tr>
-<tr><td class="key">Capitalism apologist:</td><td><a target="_blank" href="https://slatestarcodex.com/">Scott Alexander</a></td></tr>
-<tr><td class="key">Jimmy:</td><td><a target="_blank" href="https://en.wikipedia.org/wiki/I_Am_Not_Your_Negro">Baldwin</a></td></tr>
-<tr><td class="key">Movie:</td><td><a target="_blank" href="https://www.imdb.com/title/tt0117561/">Schizopolis</a>, <a target="_blank" href="https://www.imdb.com/title/tt2866360/">Coherence</a></td></tr>
-<tr><td class="key">18th century mathematician:</td><td><a target="_blank" href="https://en.wikipedia.org/wiki/Girondin_constitutional_project">Nicolas de Condorcet</a></td></tr>
-<tr><td class="key">19th century mathematician:</td><td><a target="_blank" href="https://archive.org/details/leonssurlathorie03darb/page/n5/mode/2up">Jean Gaston Darboux</a></td></tr>
-<tr><td class="key">Contemporary mathematician:</td><td><a target="_blank" href="https://scholars.duke.edu/person/bryant">Robert Bryant</a>, <a target="_blank" href="http://personal.psu.edu/sot2/">Sergei Tabachnikov</a></td></tr>
-<tr><td class="key">Algebraic variety:</td><td><a target="_blank" href="https://en.wikipedia.org/wiki/Line_complex">G(2,4)</a></td></tr>
-<tr><td class="key">Lie algebra:</td><td><a target="_blank" href="https://en.wikipedia.org/wiki/3D_rotation_group#Lie_algebra">so(3)</a></td></tr>
-<tr><td class="key">Design pattern:</td><td><a target="_blank" href="https://en.wikipedia.org/wiki/Flyweight_pattern">Flyweight</a></td>
-<tr><td class="key">Non-human primate:</td><td><a target="_blank" href="https://en.wikipedia.org/wiki/Pan_(genus)">Pan</a></td></tr>
-<tr><td class="key">Prehistoric human:</td><td><a target="_blank" href="https://en.wikipedia.org/wiki/Homo_habilis">Homo habilis</a></td></tr>
+  <tr>
+    <td class="key">Actor:</td>
+    <td class="val">
+      <a target="_blank" href="https://www.imdb.com/name/nm0000353/">Willem Dafoe</a>
+    </td>
+  </tr>
+  <tr>
+    <td class="key">Comedians:</td>
+    <td class="val">
+      <a target="_blank" href="https://alanresnick.info/">Alan Resnick</a>,
+      <a target="_blank" href="https://www.imdb.com/name/nm0593267/">David Mitchell</a>,
+      <a target="_blank" href="https://www.imdb.com/name/nm0916267/">Robert Webb</a>,
+      <a target="_blank" href="https://www.imdb.com/name/nm1547964/">Richard Ayoade</a>
+    </td>
+  </tr>
+  <tr>
+    <td class="key">Musician:</td>
+    <td class="val">
+      <a target="_blank" href="https://www.imdb.com/name/nm3247266/">Dan Deacon</a>
+    </td>
+  </tr>
+  <tr>
+    <td class="key">Game designer:</td>
+    <td class="val">
+      <a target="_blank" href="https://nifflas.fandom.com/wiki/List_of_Nifflas_games">Nifflas <img src="images/knytt_icon.png" alt=""></a>
+    </td>
+  </tr>
+  <tr>
+    <td class="key">Scientists:</td>
+    <td class="val">
+      <a target="_blank" href="https://archive.org/details/leonssurlathorie03darb/page/n5/mode/2up">Jean Gaston Darboux</a>,
+      <a target="_blank" href="https://doi.org/10.1007/s10539-010-9236-0">David Hull</a>,
+      <a target="_blank" href="https://scholars.duke.edu/person/bryant">Robert Bryant</a>,
+      <a target="_blank" href="http://personal.psu.edu/sot2/">Sergei Tabachnikov</a>
+    </td>
+  </tr>
+  <tr>
+    <td class="key">Algebraic variety:</td>
+    <td class="val">
+      <a target="_blank" href="https://en.wikipedia.org/wiki/Line_complex">G(2,4)</a>
+    </td>
+  </tr>
+  <tr>
+    <td class="key">Lie algebra:</td>
+    <td class="val">
+      <a target="_blank" href="https://en.wikipedia.org/wiki/3D_rotation_group#Lie_algebra">so(3)</a>
+    </td>
+  </tr>
 </table>
 
 </div>
@@ -249,15 +283,21 @@ function initialize_page_js() {
 <div class="section" id="Research" style="display: none;">
 
 <p>
-My research interests include:
-<ul>
-<li>Systems biology and complex systems. Graphs, categories, and operads.</li>
-<li>Software design patterns and database design patterns. OWL ontology.</li>
-<li>Philosophy of biology and science.</li>
-<li>Low-dimensional geometry. Synthetic projective and differential geometry.</li>
-<li>Differential forms and geometric PDEs.</li>
-<li>Lie groups and their representations. Tensor and symmetry methods in data analysis.</li>
-</ul>
+  Some of my research interests:
+  <ul>
+    <li>Systems biology, philosophy of biology and language.</li>
+    <li>Low-dimensional geometry. Synthetic projective and differential geometry.</li>
+    <li>Lie groups and their representations. Tensor algebra, invariant theory.</li>
+  </ul>
+</p>
+
+<p>
+  Other interests:
+  <ul>
+    <li>Library science. Indexing, classification, bibliography.</li>
+    <li>Prehistoric humans.</li>
+    <li>Rights, values, and communities.</li>
+  </ul>
 </p>
 
 <h3>Selected publications and preprints</h3>
@@ -282,31 +322,19 @@ My research interests include:
 <h3>Software</h3>
 
 <table class="sectionitems">
-<tr><td><a target="_blank" href="https://github.com/nadeemlab/SPT">SPT</a></td><td>Spatial Profiling Toolbox for spatial characterization of the tumor microenvironment in multiplex images.</td></tr>
-<tr><td><a target="_blank" href="https://pypi.org/project/coincidencetest/">coincidencetest</a></td><td>A library and supplemental tools implementing an exact test for co-occurrence of multiple binary features.</td></tr>
+<tr><td><a target="_blank" href="https://github.com/nadeemlab/SPT">SPT</a></td><td>Spatial Profiling Toolbox for spatial characterization of the tumor microenvironment in multiplex images. A deployment is live at <a href="https://oncopathtk.org">https://oncopathtk.org</a> .</td></tr>
+<tr><td><a target="_blank" href="https://pypi.org/project/coincidencetest/">coincidencetest</a></td><td>A library implementing an exact test for co-occurrence of multiple binary features.</td></tr>
 </table>
-
-<h3>Older software</h3>
-
-<table class="sectionitems">
-<tr><td><a target="_blank" href="http://www.github.com/jimmymathews/gman">gman</a></td><td>A general-purpose text-mode graph navigation and annotation tool.</td></tr>
-<tr><td><a href="code/UmbralCalculus4d.m2">4D tensor invariants</a></td><td>A <a target="_blank" href="http://www.math.uiuc.edu/Macaulay2/">Macaulay2</a> program to calculate 4d tensor invariants using the <a href="illustration.html">umbral calculus</a> as described in <a target="_blank" href="https://www.google.com/books/edition/Invariant_Theory_and_Superalgebras/DWYaF9S0ZsgC?hl=en">Grosshans, Rota, and Stein</a>.</td></tr>
-<tr><td><a href="code/perspectiveCubeTool.ggb">perspective cube tool</a></td><td><a target="_blank" href="https://www.geogebra.org/">Geogebra</a> tool for constructing cubes in perspective, and <a href="notes/cube.txt">a note</a> explaining how to draw cubes on paper. Drawn from George Francis' <a target="_blank" href="http://www.springer.com/us/book/9780387345420">A Topological Picturebook</a>.</td></tr>
-</table>
-
 
 <h3>Notes</h3>
 
-<ul>
-<li>Summary notes of Ehresmann and Vanbremeersch <i>Memory Evolutive Systems</i> <a target="_blank" href="https://socialmath.github.io/mes/ReviewSummary_EhresmannVanbremeersch_MES_PartA.html">Part A</a> and <a target="_blank" href="https://socialmath.github.io/mes/ReviewSummary_EhresmannVanbremeersch_MES_PartB.html">Part B</a>.</li>
-</ul>
-
-<h3>Talks</h3>
-
 <table class="sectionitems">
-<tr><td>November 2019</td><td>Wasserstein and Fisher-Rao from de Rham and Poincare. BMCC Mathematics Department Colloquium.</td></tr>
-<tr><td>September 2017</td><td><a href="talks/handout.pdf">Handout</a> about curve jets, from a talk at TU Berlin</td></tr>
-<tr><td>July 2017</td><td><a href="talks/SIAM_AG_AV_2017.pdf">Multi-focal tensors as invariant differential forms, and envelopes of line congruences</a><br>SIAM mini-symposium on algebraic vision, in Atlanta, Georgia</td></tr>
+<tr>
+<td></td>
+<td>Summary notes of Ehresmann and Vanbremeersch <i>Memory Evolutive Systems</i> <a target="_blank" href="https://socialmath.github.io/mes/ReviewSummary_EhresmannVanbremeersch_MES_PartA.html">Part A</a> and <a target="_blank" href="https://socialmath.github.io/mes/ReviewSummary_EhresmannVanbremeersch_MES_PartB.html">Part B</a>.</td>
+</tr>
+<tr><td></td><td><a href="talks/handout.pdf">Handout</a> about curve jets, from a talk at TU Berlin (September 2017)</td></tr>
+<tr><td></td><td><a href="talks/SIAM_AG_AV_2017.pdf">Multi-focal tensors as invariant differential forms, and envelopes of line congruences</a><br>SIAM mini-symposium on algebraic vision, in Atlanta, Georgia (July 2017)</td></tr>
 </table>
 
 </div>
@@ -388,24 +416,39 @@ Forest near Tömörbulag
 
 <div class="section" id="Links" style="display: none;">
 
-<ul>
-<li><a target="_blank" href="https://osmosianplainenglishprogramming.blog/">Plain English Programming Language</li>
-<li><a target="_blank" href="http://www.link.cs.cmu.edu/link/">CMU Link Grammar</a></li>
-<li><a target="_blank" href="http://www.cis.upenn.edu/~xtag/">XTAG project</a></li>
-<li><a target="_blank" href="http://attempto.ifi.uzh.ch/site/">Attempto Project</a></li>
-<li><a target="_blank" href="https://intelligence.org/">Machine Intelligence Research Institute</a></li>
-<li><a target="_blank" href="http://www.opencog.org">OpenCog Foundation</a></li>
-<li><a target="_blank" href="https://openai.com/about/">OpenAI</a></li>
-<li><a target="_blank" href="http://www.fsf.org/">Free Software Foundation </a></li>
-<li><a target="_blank" href="https://www.eff.org/">Electronic Frontier Foundation</a></li>
-<li><a target="_blank" href="https://dgsociety.org/about">Digital Government Society </a></li>
-<li><a target="_blank" href="https://cdt.org/about/">Center for Democracy and Technology</a></li>
-<li><a target="_blank" href="https://www.newamerica.org/">Open Technology Institute</a></li>
-<li><a target="_blank" href="http://www.participatorybudgeting.org/about-participatory-budgeting/what-is-pb/">Participatory Budgetary Project</a></li>
-<li><a target="_blank" href="http://www.publicbankinginstitute.org/">Public Banking Institute</a></li>
-<li><a target="_blank" href="https://stallman.org/">Richard Stallman</a></li>
-</ul>
-
+<p>
+  <b>Language</b>
+  <ul>
+    <li><a target="_blank" href="https://osmosianplainenglishprogramming.blog/">Plain English Programming Language</li>
+    <li><a target="_blank" href="http://www.link.cs.cmu.edu/link/">CMU Link Grammar</a></li>
+    <li><a target="_blank" href="http://www.cis.upenn.edu/~xtag/">XTAG project</a></li>
+    <li><a target="_blank" href="http://attempto.ifi.uzh.ch/site/">Attempto Project</a></li>
+  </ul>
+</p>
+<p>
+  <b>Technology</b>
+  <ul>
+    <li><a target="_blank" href="https://intelligence.org/">Machine Intelligence Research Institute</a></li>
+    <li><a target="_blank" href="http://www.fsf.org/">Free Software Foundation </a></li>
+    <li><a target="_blank" href="https://www.eff.org/">Electronic Frontier Foundation</a></li>
+    <li><a target="_blank" href="https://dgsociety.org/about">Digital Government Society </a></li>
+    <li><a target="_blank" href="https://cdt.org/about/">Center for Democracy and Technology</a></li>
+    <li><a target="_blank" href="https://stallman.org/">Richard Stallman</a></li>
+  </ul>
+</p>
+<p>
+  <b>Public interest economics</b>
+  <ul>
+    <li><a target="_blank" href="http://www.participatorybudgeting.org/about-participatory-budgeting/what-is-pb/">Participatory Budgetary Project</a></li>
+    <li><a target="_blank" href="http://www.publicbankinginstitute.org/">Public Banking Institute</a></li>
+  </ul>
+</p>
+<p>
+  <b>Library</b>
+  <ul>
+    <li><a target="_blank" href="https://www.nysoclib.org">New York Society Library</a></li>
+  </ul>
+</p>
 </div>
 
 </div>
